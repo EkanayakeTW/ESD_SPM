@@ -5,7 +5,11 @@
  */
 package interfaces;
 
+import java.awt.Color;
+import java.io.File;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +25,12 @@ public class Email_Form extends javax.swing.JFrame {
         initComponents();
     }
 
+    private Pattern pattern;
+	private Matcher matcher;
+
+	private static final String EMAIL_PATTERN = 
+		"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,12 +76,30 @@ public class Email_Form extends javax.swing.JFrame {
                 toTxtMouseReleased(evt);
             }
         });
+        toTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toTxtActionPerformed(evt);
+            }
+        });
+
+        fromTxt.setEditable(false);
+        fromTxt.setText("saman.g@sliit.lk");
+        fromTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fromTxtActionPerformed(evt);
+            }
+        });
 
         descriptionTxt.setColumns(20);
         descriptionTxt.setRows(5);
         jScrollPane1.setViewportView(descriptionTxt);
 
         jButton1.setText("Browse");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Send >>");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -169,11 +197,32 @@ public class Email_Form extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String email = toTxt.getText().toString();
-        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-        Pattern p = Pattern.compile(ePattern);
-        
+        String to = toTxt.getText();
+        pattern = Pattern.compile(EMAIL_PATTERN);
+        matcher = pattern.matcher(to);
+        if(!matcher.matches())
+        {
+            toTxt.setBackground(Color.red);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void toTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_toTxtActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        String filename = f.getAbsolutePath();
+        attachTxt.setText(filename);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void fromTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fromTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fromTxtActionPerformed
 
     /**
      * @param args the command line arguments
