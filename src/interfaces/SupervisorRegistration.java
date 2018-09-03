@@ -5,28 +5,17 @@
  */
 package interfaces;
 
-import MainFiles.Dbconfig;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Ekanayaketw
  */
-public class StudentRegistration extends javax.swing.JFrame {
-    
-    Connection con=null;
-    PreparedStatement pst=null;
-    ResultSet rs=null;
+public class SupervisorRegistration extends javax.swing.JFrame {
 
     /**
      * Creates new form StudentRegistration
      */
-    public StudentRegistration() {
+    public SupervisorRegistration() {
         initComponents();
-        con=Dbconfig.connect();
     }
 
     /**
@@ -41,13 +30,9 @@ public class StudentRegistration extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        sem = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         contact = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        stdaddress = new javax.swing.JTextArea();
         email = new javax.swing.JLabel();
         pw = new javax.swing.JLabel();
         repw = new javax.swing.JLabel();
@@ -55,20 +40,15 @@ public class StudentRegistration extends javax.swing.JFrame {
         female = new javax.swing.JRadioButton();
         gender = new javax.swing.JLabel();
         campus = new javax.swing.JLabel();
-        course = new javax.swing.JLabel();
-        year = new javax.swing.JLabel();
-        Sem = new javax.swing.JTextField();
-        stid = new javax.swing.JTextField();
-        stdname = new javax.swing.JTextField();
+        svtid = new javax.swing.JTextField();
+        svname = new javax.swing.JTextField();
         number = new javax.swing.JTextField();
         email_ = new javax.swing.JTextField();
-        Campus = new javax.swing.JTextField();
-        Course = new javax.swing.JTextField();
-        Year = new javax.swing.JTextField();
         pw2 = new javax.swing.JPasswordField();
         pw1 = new javax.swing.JPasswordField();
         reset = new javax.swing.JButton();
         add1 = new javax.swing.JButton();
+        Departmentcombo = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -80,6 +60,7 @@ public class StudentRegistration extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 51));
         setName("StudentRegistration"); // NOI18N
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -88,68 +69,46 @@ public class StudentRegistration extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel1.setText("Student Registration Form");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 220, -1));
+        jLabel1.setText("Supervisor Registration Form");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 240, 30));
 
-        sem.setText("Semester");
-        jPanel1.add(sem, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, 90, 20));
+        jLabel3.setText("Supervisor Id");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 80, 20));
 
-        jLabel3.setText("Student Id");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 80, 20));
-
-        jLabel5.setText("Student Name");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 80, 20));
-
-        jLabel6.setText("Student Address");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 100, 20));
+        jLabel5.setText("Supervisor Name");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 90, 20));
 
         contact.setText("Contact Number");
-        jPanel1.add(contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 100, 20));
-
-        stdaddress.setColumns(20);
-        stdaddress.setRows(5);
-        jScrollPane1.setViewportView(stdaddress);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 200, 90));
+        jPanel1.add(contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 100, 20));
 
         email.setText("Email Address");
-        jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 100, 20));
+        jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 100, 20));
 
         pw.setText("Password");
-        jPanel1.add(pw, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 70, 20));
+        jPanel1.add(pw, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 70, 20));
 
         repw.setText("Re-enter Password");
-        jPanel1.add(repw, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 100, 20));
+        jPanel1.add(repw, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 100, 20));
 
         buttonGroup1.add(male);
         male.setSelected(true);
         male.setText("Male");
-        jPanel1.add(male, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, -1, -1));
+        jPanel1.add(male, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, -1, -1));
 
         buttonGroup1.add(female);
         female.setText("Female");
-        jPanel1.add(female, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, -1, -1));
+        jPanel1.add(female, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
 
         gender.setText("Gender");
-        jPanel1.add(gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 90, 20));
+        jPanel1.add(gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 90, 20));
 
-        campus.setText("Campus");
-        jPanel1.add(campus, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, 90, 20));
-
-        course.setText("Course");
-        jPanel1.add(course, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, 90, 20));
-
-        year.setText("Year");
-        jPanel1.add(year, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 90, 20));
-        jPanel1.add(Sem, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 590, 210, 30));
-        jPanel1.add(stid, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 200, 30));
-        jPanel1.add(stdname, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 200, 30));
-        jPanel1.add(number, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, 210, 30));
-        jPanel1.add(email_, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 210, 30));
-        jPanel1.add(Campus, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 470, 210, 30));
-        jPanel1.add(Course, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 510, 210, 30));
-        jPanel1.add(Year, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 550, 210, 30));
-        jPanel1.add(pw2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, 210, 30));
+        campus.setText("Department");
+        jPanel1.add(campus, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, 90, 20));
+        jPanel1.add(svtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 200, 30));
+        jPanel1.add(svname, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 200, 30));
+        jPanel1.add(number, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 210, 30));
+        jPanel1.add(email_, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 210, 30));
+        jPanel1.add(pw2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, 210, 30));
         jPanel1.add(pw1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 210, 30));
 
         reset.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -169,6 +128,9 @@ public class StudentRegistration extends javax.swing.JFrame {
             }
         });
         jPanel1.add(add1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 600, -1, -1));
+
+        Departmentcombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(Departmentcombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 510, 210, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 560, 650));
 
@@ -221,82 +183,49 @@ public class StudentRegistration extends javax.swing.JFrame {
     private void Demo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Demo1ActionPerformed
         // TODO add your handling code here:
         
-        stid.setText("IT15023156");
-        stdname.setText("Bihandu Sanchith");
-        stdaddress.setText("E.Drake Rd Ft Collins");
+        svtid.setText("SPR15023156");
+        svname.setText("Bihandu Sanchith");
         number.setText("0772359578");
         email_.setText("B@gmail.com");
         pw1.setText("but123");
         pw2.setText("but123");
-        Campus.setText("Malabe");
-        Course.setText("Software Engineering");
-        Year.setText("3");
-        Sem.setText("2");
+        
         
     }//GEN-LAST:event_Demo1ActionPerformed
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
         // TODO add your handling code here:
         
-        stid.setText("");
-        stdname.setText("");
-        stdaddress.setText("");
+        svtid.setText("");
+        svname.setText("");
         number.setText("");
         email_.setText("");
         pw1.setText("");
         pw2.setText("");
-        Campus.setText("");
-        Course.setText("");
-        Year.setText("");
-        Sem.setText("");
+        
     }//GEN-LAST:event_resetActionPerformed
 
     private void add1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add1ActionPerformed
         // TODO add your handling code here:
         AddRegistration();
-          
+        
     }//GEN-LAST:event_add1ActionPerformed
 
     
         public void AddRegistration()
     
-    { 
-       String student_ID=stid.getText();
-        String student_name=stdname.getText();
-        String student_address=stdaddress.getText();
-        String student_gender=buttonGroup1.getSelection().getActionCommand();
-        int student_contact=Integer.parseInt(number.getText());
-        String student_email=email_.getText();
-        String student_password=pw1.getText();
-        String student_password2=pw2.getText();
-        String campus_=Campus.getText();
-        String course_=Course.getText();
-        int year_=Integer.parseInt(Year.getText());
-        int semester_=Integer.parseInt(Sem.getText());
+    {
         
         
-          //pst=(PreparedStatement) con.prepareStatement();
+        String id = svtid.getText();
+        String name =svname.getText();
+        String contact =number.getText();
+        String email =email_.getText();
+        String Password1 =pw1.getPassword().toString();
+        String Password2=pw2.getPassword().toString();
+        String Campus =campus.getText();
+        String Dept = Departmentcombo.getSelectedItem().toString();
         
-        try{
-                 String X="Insert into studentregistration(student_ID,student_name,"
-               + "student_address,student_contact,student_email,"
-               + "student_password,student_password2,campus,"
-                         + "course,year,semester)"
-               + "values('"+student_ID+"','"+student_name+"','"+student_address+"'"
-               + ",'"+student_contact+"','"+student_email+"',"
-               + "'"+student_password+"','"+student_password2+"',"
-                         + "'"+campus_+"','"+course_+"','"+year_+"','"+semester_+"')";
-                System.out.println("2nd");
-              pst=(PreparedStatement) con.prepareStatement(X);
-                 System.out.println("3rd");
-              pst.execute();
-                 
-                 System.out.println("4th");
-                JOptionPane.showMessageDialog(null, "successfully added");
-                
-            }catch(Exception e){
-                e.getMessage();
-            }
     }
     /**
      * @param args the command line arguments
@@ -315,36 +244,34 @@ public class StudentRegistration extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StudentRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SupervisorRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(StudentRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SupervisorRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(StudentRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SupervisorRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StudentRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SupervisorRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StudentRegistration().setVisible(true);
+                new SupervisorRegistration().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Campus;
-    private javax.swing.JTextField Course;
     private javax.swing.JButton Demo1;
-    private javax.swing.JTextField Sem;
-    private javax.swing.JTextField Year;
+    private javax.swing.JComboBox<String> Departmentcombo;
     private javax.swing.JButton add1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel campus;
     private javax.swing.JLabel contact;
-    private javax.swing.JLabel course;
     private javax.swing.JButton delete;
     private javax.swing.JButton edit;
     private javax.swing.JLabel email;
@@ -354,10 +281,8 @@ public class StudentRegistration extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JRadioButton male;
@@ -367,11 +292,8 @@ public class StudentRegistration extends javax.swing.JFrame {
     private javax.swing.JPasswordField pw2;
     private javax.swing.JLabel repw;
     private javax.swing.JButton reset;
-    private javax.swing.JLabel sem;
-    private javax.swing.JTextArea stdaddress;
-    private javax.swing.JTextField stdname;
-    private javax.swing.JTextField stid;
+    private javax.swing.JTextField svname;
+    private javax.swing.JTextField svtid;
     private javax.swing.JButton view;
-    private javax.swing.JLabel year;
     // End of variables declaration//GEN-END:variables
 }
