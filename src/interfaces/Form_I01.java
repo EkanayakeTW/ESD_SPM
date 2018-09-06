@@ -135,7 +135,7 @@ public class Form_I01 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+          
         String student_id=stu_id.getText();
         String student_name=stu_name.getText();
         String student_address=stu_address.getText();
