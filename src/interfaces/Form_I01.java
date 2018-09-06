@@ -26,7 +26,7 @@ public class Form_I01 extends javax.swing.JFrame {
      */
     public Form_I01() {
         initComponents();
-         con=Dbconfig.connect();
+        // con=Dbconfig.connect();
 
     }
    

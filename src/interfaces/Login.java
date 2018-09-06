@@ -31,7 +31,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         
         //connect to DB
-        con=Dbconfig.connect();
+       // con=Dbconfig.connect();
     }
 
     /**

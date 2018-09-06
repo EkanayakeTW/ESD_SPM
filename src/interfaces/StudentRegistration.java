@@ -73,9 +73,11 @@ public class StudentRegistration extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         view = new javax.swing.JButton();
-        delete = new javax.swing.JButton();
+        gen = new javax.swing.JButton();
         edit = new javax.swing.JButton();
         Demo1 = new javax.swing.JButton();
+        delete1 = new javax.swing.JButton();
+        delete2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 51));
@@ -196,9 +198,9 @@ public class StudentRegistration extends javax.swing.JFrame {
         view.setText("View ");
         jPanel2.add(view, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 600, -1, -1));
 
-        delete.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        delete.setText("Delete");
-        jPanel2.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 600, -1, -1));
+        gen.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        gen.setText("Delete");
+        jPanel2.add(gen, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 600, -1, -1));
 
         edit.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         edit.setText("Edit");
@@ -212,6 +214,14 @@ public class StudentRegistration extends javax.swing.JFrame {
             }
         });
         jPanel2.add(Demo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 600, -1, -1));
+
+        delete1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        delete1.setText("Delete");
+        jPanel2.add(delete1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 600, -1, -1));
+
+        delete2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        delete2.setText("Delete");
+        jPanel2.add(delete2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 600, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, -1, 650));
 
@@ -238,30 +248,18 @@ public class StudentRegistration extends javax.swing.JFrame {
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
         // TODO add your handling code here:
         
-        stid.setText("");
-        stdname.setText("");
-        stdaddress.setText("");
-        number.setText("");
-        email_.setText("");
-        pw1.setText("");
-        pw2.setText("");
-        Campus.setText("");
-        Course.setText("");
-        Year.setText("");
-        Sem.setText("");
+       Reset();
     }//GEN-LAST:event_resetActionPerformed
 
     private void add1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add1ActionPerformed
         // TODO add your handling code here:
-        AddRegistration();
-          
+        AddStudentRegistration();
+        Reset();
+     
     }//GEN-LAST:event_add1ActionPerformed
-
+    private void AddStudentRegistration(){
     
-        public void AddRegistration()
-    
-    { 
-       String student_ID=stid.getText();
+        String student_ID=stid.getText();
         String student_name=stdname.getText();
         String student_address=stdaddress.getText();
         String student_gender=buttonGroup1.getSelection().getActionCommand();
@@ -274,30 +272,47 @@ public class StudentRegistration extends javax.swing.JFrame {
         int year_=Integer.parseInt(Year.getText());
         int semester_=Integer.parseInt(Sem.getText());
         
-        
-          //pst=(PreparedStatement) con.prepareStatement();
-        
         try{
-                 String X="Insert into studentregistration(student_ID,student_name,"
-               + "student_address,student_contact,student_email,"
+                 String x="Insert into studentregistration(student_ID,student_name,"
+               + "student_address,student_gender,student_contact,student_email,"
                + "student_password,student_password2,campus,"
                          + "course,year,semester)"
-               + "values('"+student_ID+"','"+student_name+"','"+student_address+"'"
+               + "values('"+student_ID+"','"+student_name+"','"+student_address+"','"+student_gender+"'"
                + ",'"+student_contact+"','"+student_email+"',"
                + "'"+student_password+"','"+student_password2+"',"
                          + "'"+campus_+"','"+course_+"','"+year_+"','"+semester_+"')";
-                System.out.println("2nd");
-              pst=(PreparedStatement) con.prepareStatement(X);
-                 System.out.println("3rd");
+               // System.out.println("2nd");
+              pst=(PreparedStatement) con.prepareStatement(x);
               pst.execute();
                  
-                 System.out.println("4th");
-                JOptionPane.showMessageDialog(null, "successfully added");
+                JOptionPane.showMessageDialog(null, "successfully added to the"
+                        + " StudentRegistration");
                 
             }catch(Exception e){
                 e.getMessage();
             }
+          
+        
     }
+        void Reset(){
+        
+        
+        stid.setText("");
+        stdname.setText("");
+        stdaddress.setText("");
+        number.setText("");
+        email_.setText("");
+        pw1.setText("");
+        pw2.setText("");
+        Campus.setText("");
+        Course.setText("");
+        Year.setText("");
+        Sem.setText("");
+            
+        }
+        
+        
+    
     /**
      * @param args the command line arguments
      */
@@ -345,11 +360,13 @@ public class StudentRegistration extends javax.swing.JFrame {
     private javax.swing.JLabel campus;
     private javax.swing.JLabel contact;
     private javax.swing.JLabel course;
-    private javax.swing.JButton delete;
+    private javax.swing.JButton delete1;
+    private javax.swing.JButton delete2;
     private javax.swing.JButton edit;
     private javax.swing.JLabel email;
     private javax.swing.JTextField email_;
     private javax.swing.JRadioButton female;
+    private javax.swing.JButton gen;
     private javax.swing.JLabel gender;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
