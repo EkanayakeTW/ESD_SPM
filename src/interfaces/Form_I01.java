@@ -27,9 +27,12 @@ public class Form_I01 extends javax.swing.JFrame {
      */
     public Form_I01() {
         initComponents();
-         con=Dbconfig.connect();
-         
-                 try{
+        con=Dbconfig.connect();
+        
+        stu_id.setText(Login.username_.getText());
+        stu_id.setEditable(false);
+        
+           try{
             String ITnbr =Login.username_.getText();
             String sql="select * from formi01p1 where student_ID=?";
             
@@ -40,6 +43,7 @@ public class Form_I01 extends javax.swing.JFrame {
                  
                  name.setText("Login As "+rs.getString("student_name"));
                  name.setForeground(Color.red);
+                 stu_name.setText(rs.getString("student_name"));
                  
              }
              
@@ -47,6 +51,7 @@ public class Form_I01 extends javax.swing.JFrame {
         }catch(Exception e){
             e.getMessage();
         }
+           
 
     }
    

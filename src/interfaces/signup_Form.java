@@ -50,6 +50,7 @@ public class signup_Form extends javax.swing.JFrame {
         cpw = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(704, 470));
@@ -96,6 +97,9 @@ public class signup_Form extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 360, -1, -1));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/S_images/signup.png"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, 100, 100));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -200,6 +204,7 @@ public class signup_Form extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPasswordField pw;
     private javax.swing.JTextField un;
     // End of variables declaration//GEN-END:variables
