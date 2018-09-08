@@ -332,7 +332,8 @@ public class Form_I03P2 extends javax.swing.JFrame {
         
         File dir = new File("C:\\Users\\Lenovo\\Documents\\Form I-3\\Accepted\\"+id+".pdf");
         Boolean b  = dir.exists();
-       
+        
+              
         if(b)//pdf exists in accepted folder
         {
             try {
@@ -360,6 +361,32 @@ public class Form_I03P2 extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Check file details");
             }
         }
+        
+        
+        
+        File newdir = new File("C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\"+id+".pdf");
+        Boolean a  = newdir.exists();
+                
+        if(!a)//pdf not exists
+        {
+            //JOptionPane.showMessageDialog(null, id+".pdf not available");
+        }
+        else if(id.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Invalid Student ID");
+        }
+        else
+        {
+            try {
+            
+            String command = "rundll32 url.dll, FileProtocolHandler "+
+                    "C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\"+id+".pdf";
+            Runtime.getRuntime().exec(command);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Check file details");
+            }
+        }
+       
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
