@@ -31,7 +31,7 @@ public class JFrameSuchi extends javax.swing.JFrame {
      */
     public JFrameSuchi() {
         initComponents();
-        String ITnbr = "IT16091344";//Login.username_.getText();
+        String ITnbr = Login.username_.getText();
         id.setText(ITnbr);
         id.setEditable(false);
         
