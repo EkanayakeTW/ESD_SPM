@@ -9,6 +9,9 @@ import MainFiles.Dbconfig;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -190,6 +193,11 @@ public class StudentRegistration extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 12, 501, -1));
@@ -257,6 +265,37 @@ public class StudentRegistration extends javax.swing.JFrame {
         Reset();
      
     }//GEN-LAST:event_add1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+       
+        // TODO add your handling code here:
+         int row =jTable1.getSelectedRow();
+        String student_ID = jTable1.getValueAt(row,0).toString();
+        String student_name = jTable1.getValueAt(row,1).toString();
+        String student_address = jTable1.getValueAt(row,2).toString();
+        String student_gender = jTable1.getValueAt(row,3).toString();
+        String student_contact = jTable1.getValueAt(row,4).toString();
+        String student_email = jTable1.getValueAt(row,5).toString();
+        String student_password1 = jTable1.getValueAt(row,6).toString();
+        String student_password2 = jTable1.getValueAt(row,7).toString();
+        String campus_ = jTable1.getValueAt(row,8).toString();
+        String course_ = jTable1.getValueAt(row,9).toString();
+        String year_ = jTable1.getValueAt(row,10).toString();
+        String semester_ = jTable1.getValueAt(row,11).toString();
+
+        stid.setText(student_ID);
+        stdname.setText(student_name);
+        stdaddress.setText(student_address);
+        male.setText(student_gender);
+        number.setText(student_contact);
+        email_.setText(student_email);
+        pw1.setText(student_password1);
+        pw2.setText(student_password1);
+        Campus.setText(campus_);
+        Course.setText(course_);
+        Year.setText(year_);
+        Sem.setText(semester_);
+    }//GEN-LAST:event_jTable1MouseClicked
     private void AddStudentRegistration(){
     
         String student_ID=stid.getText();
@@ -271,6 +310,26 @@ public class StudentRegistration extends javax.swing.JFrame {
         String course_=Course.getText();
         int year_=Integer.parseInt(Year.getText());
         int semester_=Integer.parseInt(Sem.getText());
+        
+        /*        if(stdname.isEmpty()||stid.isEmpty()||stdaddress.isEmpty()||number.
+        isEmpty()||email_.isEmpty()||pw1.isEmpty()||pw2.isEmpty()
+        ||Campus.isEmpty()||Course.isEmpty()||Year.isEmpty()||Sem.isEmpty()){
+            
+            stid.setBackground(Color.GREEN);
+            stdname.setBackground(Color.GREEN);
+            stdaddress.setBackground(Color.GREEN);
+            number.setBackground(Color.GREEN);
+            email_.setBackground(Color.GREEN);
+            pw1.setBackground(Color.GREEN);
+            pw2.setBackground(Color.GREEN);
+            Campus.setBackground(Color.GREEN);
+            Course.setBackground(Color.GREEN);
+            Year.setBackground(Color.GREEN);
+            Sem.setBackground(Color.GREEN);
+            JOptionPane.showMessageDialog(null, "WARNING FIELDS ARE EMPTY");
+            
+        }
+        */
         
         try{
                  String x="Insert into studentregistration(student_ID,student_name,"
@@ -293,6 +352,18 @@ public class StudentRegistration extends javax.swing.JFrame {
             }
           
         
+    }
+     private void TableLoad(){
+      
+        try {
+            String sql="select * from studentregistration where student_ID=?";
+            
+            pst=(PreparedStatement) con.prepareStatement(sql);
+            rs=pst.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentRegistration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }
         void Reset(){
         

@@ -62,6 +62,7 @@ public class Reset_form extends javax.swing.JFrame {
         student = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 530));
@@ -93,7 +94,7 @@ public class Reset_form extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel4.setText("Reset Password");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 290, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 250, -1));
 
         reset.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         reset.setText("Reset");
@@ -124,6 +125,9 @@ public class Reset_form extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/S_images/reset-icon.png"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 110, 90));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -301,6 +305,7 @@ public class Reset_form extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField newpw;
     private javax.swing.JLabel newpwl;
