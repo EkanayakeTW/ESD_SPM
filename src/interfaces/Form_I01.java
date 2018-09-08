@@ -278,6 +278,16 @@ public class Form_I01 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+          
+        String student_id=stu_id.getText();
+        String student_name=stu_name.getText();
+        String student_address=stu_address.getText();
+        String student_home_phone=stu_home_phone.getText();
+        String student_mobile_phone=stu_mobile_phone.getText();
+        String student_email=stu_email.getText();
+        String student_semester=stu_semester.getText();
+        String student_year=stu_year.getText();
+        String student_cgpa=stu_cgpa.getText();
         
         String student_id_=stu_id.getText();
         String student_name_=stu_name.getText();

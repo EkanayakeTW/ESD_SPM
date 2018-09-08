@@ -20,7 +20,8 @@ public class Dbconfig {
         
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            conn=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/SPM_DB","root","");
+            conn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/spm_db","root",""
+            conn=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/SPM_DB","root","")
             
         }
         catch(ClassNotFoundException | SQLException e){
