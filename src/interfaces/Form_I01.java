@@ -28,6 +28,7 @@ public class Form_I01 extends javax.swing.JFrame {
     public Form_I01() {
         initComponents();
         con=Dbconfig.connect();
+        stu_name.setEditable(false);
         
         stu_id.setText(Login.username_.getText());
         stu_id.setEditable(false);
@@ -351,12 +352,12 @@ public class Form_I01 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            stu_id.setText("IT16091344");
-            stu_name.setText("pavani subasinghe");
+            stu_id.setText("IT16112742");
+            stu_name.setText("sithara ishanthi");
             stu_address.setText("123,galborella,kelaniya");  
             stu_home_phone.setText("0116574538");  
             stu_mobile_phone.setText("0715678900");
-            stu_email.setText("pavani@gmail.com");
+            stu_email.setText("sithara@gmail.com");
             stu_semester.setText("2");
             stu_year.setText("3");
             stu_cgpa.setText("3.21");
@@ -400,7 +401,8 @@ public class Form_I01 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-         int x=JOptionPane.showConfirmDialog(null,"Do you really want to Update this record");
+         
+        int x=JOptionPane.showConfirmDialog(null,"Do you really want to Update this record");
         
          if(x==0){
   
