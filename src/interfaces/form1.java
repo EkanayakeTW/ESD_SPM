@@ -1,3 +1,5 @@
+package interfaces;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -95,8 +97,6 @@ public class form1 extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         jTextField20 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
-        jXDatePicker2 = new org.jdesktop.swingx.JXDatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -335,14 +335,6 @@ public class form1 extends javax.swing.JFrame {
         });
         jPanel6.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 600, -1, -1));
 
-        jXDatePicker1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jXDatePicker1ActionPerformed(evt);
-            }
-        });
-        jPanel6.add(jXDatePicker1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, 140, -1));
-        jPanel6.add(jXDatePicker2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 410, 280, -1));
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -508,7 +500,5 @@ public class form1 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker2;
     // End of variables declaration//GEN-END:variables
 }
