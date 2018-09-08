@@ -5,17 +5,31 @@
  */
 package interfaces;
 
+import MainFiles.Dbconfig;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Ekanayaketw
  */
 public class StudentRegistration extends javax.swing.JFrame {
+    
+    Connection con=null;
+    PreparedStatement pst=null;
+    ResultSet rs=null;
 
     /**
      * Creates new form StudentRegistration
      */
     public StudentRegistration() {
         initComponents();
+        con=Dbconfig.connect();
     }
 
     /**
@@ -62,9 +76,11 @@ public class StudentRegistration extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         view = new javax.swing.JButton();
-        delete = new javax.swing.JButton();
+        gen = new javax.swing.JButton();
         edit = new javax.swing.JButton();
         Demo1 = new javax.swing.JButton();
+        delete1 = new javax.swing.JButton();
+        delete2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 51));
@@ -177,6 +193,11 @@ public class StudentRegistration extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 12, 501, -1));
@@ -185,9 +206,9 @@ public class StudentRegistration extends javax.swing.JFrame {
         view.setText("View ");
         jPanel2.add(view, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 600, -1, -1));
 
-        delete.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        delete.setText("Delete");
-        jPanel2.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 600, -1, -1));
+        gen.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        gen.setText("Delete");
+        jPanel2.add(gen, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 600, -1, -1));
 
         edit.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         edit.setText("Edit");
@@ -201,6 +222,14 @@ public class StudentRegistration extends javax.swing.JFrame {
             }
         });
         jPanel2.add(Demo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 600, -1, -1));
+
+        delete1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        delete1.setText("Delete");
+        jPanel2.add(delete1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 600, -1, -1));
+
+        delete2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        delete2.setText("Delete");
+        jPanel2.add(delete2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 600, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, -1, 650));
 
@@ -227,6 +256,118 @@ public class StudentRegistration extends javax.swing.JFrame {
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
         // TODO add your handling code here:
         
+       Reset();
+    }//GEN-LAST:event_resetActionPerformed
+
+    private void add1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add1ActionPerformed
+        // TODO add your handling code here:
+        AddStudentRegistration();
+        Reset();
+     
+    }//GEN-LAST:event_add1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+       
+        // TODO add your handling code here:
+         int row =jTable1.getSelectedRow();
+        String student_ID = jTable1.getValueAt(row,0).toString();
+        String student_name = jTable1.getValueAt(row,1).toString();
+        String student_address = jTable1.getValueAt(row,2).toString();
+        String student_gender = jTable1.getValueAt(row,3).toString();
+        String student_contact = jTable1.getValueAt(row,4).toString();
+        String student_email = jTable1.getValueAt(row,5).toString();
+        String student_password1 = jTable1.getValueAt(row,6).toString();
+        String student_password2 = jTable1.getValueAt(row,7).toString();
+        String campus_ = jTable1.getValueAt(row,8).toString();
+        String course_ = jTable1.getValueAt(row,9).toString();
+        String year_ = jTable1.getValueAt(row,10).toString();
+        String semester_ = jTable1.getValueAt(row,11).toString();
+
+        stid.setText(student_ID);
+        stdname.setText(student_name);
+        stdaddress.setText(student_address);
+        male.setText(student_gender);
+        number.setText(student_contact);
+        email_.setText(student_email);
+        pw1.setText(student_password1);
+        pw2.setText(student_password1);
+        Campus.setText(campus_);
+        Course.setText(course_);
+        Year.setText(year_);
+        Sem.setText(semester_);
+    }//GEN-LAST:event_jTable1MouseClicked
+    private void AddStudentRegistration(){
+    
+        String student_ID=stid.getText();
+        String student_name=stdname.getText();
+        String student_address=stdaddress.getText();
+        String student_gender=buttonGroup1.getSelection().getActionCommand();
+        int student_contact=Integer.parseInt(number.getText());
+        String student_email=email_.getText();
+        String student_password=pw1.getText();
+        String student_password2=pw2.getText();
+        String campus_=Campus.getText();
+        String course_=Course.getText();
+        int year_=Integer.parseInt(Year.getText());
+        int semester_=Integer.parseInt(Sem.getText());
+        
+        /*        if(stdname.isEmpty()||stid.isEmpty()||stdaddress.isEmpty()||number.
+        isEmpty()||email_.isEmpty()||pw1.isEmpty()||pw2.isEmpty()
+        ||Campus.isEmpty()||Course.isEmpty()||Year.isEmpty()||Sem.isEmpty()){
+            
+            stid.setBackground(Color.GREEN);
+            stdname.setBackground(Color.GREEN);
+            stdaddress.setBackground(Color.GREEN);
+            number.setBackground(Color.GREEN);
+            email_.setBackground(Color.GREEN);
+            pw1.setBackground(Color.GREEN);
+            pw2.setBackground(Color.GREEN);
+            Campus.setBackground(Color.GREEN);
+            Course.setBackground(Color.GREEN);
+            Year.setBackground(Color.GREEN);
+            Sem.setBackground(Color.GREEN);
+            JOptionPane.showMessageDialog(null, "WARNING FIELDS ARE EMPTY");
+            
+        }
+        */
+        
+        try{
+                 String x="Insert into studentregistration(student_ID,student_name,"
+               + "student_address,student_gender,student_contact,student_email,"
+               + "student_password,student_password2,campus,"
+                         + "course,year,semester)"
+               + "values('"+student_ID+"','"+student_name+"','"+student_address+"','"+student_gender+"'"
+               + ",'"+student_contact+"','"+student_email+"',"
+               + "'"+student_password+"','"+student_password2+"',"
+                         + "'"+campus_+"','"+course_+"','"+year_+"','"+semester_+"')";
+               // System.out.println("2nd");
+              pst=(PreparedStatement) con.prepareStatement(x);
+              pst.execute();
+                 
+                JOptionPane.showMessageDialog(null, "successfully added to the"
+                        + " StudentRegistration");
+                
+            }catch(Exception e){
+                e.getMessage();
+            }
+          
+        
+    }
+     private void TableLoad(){
+      
+        try {
+            String sql="select * from studentregistration where student_ID=?";
+            
+            pst=(PreparedStatement) con.prepareStatement(sql);
+            rs=pst.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentRegistration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
+        void Reset(){
+        
+        
         stid.setText("");
         stdname.setText("");
         stdaddress.setText("");
@@ -238,33 +379,11 @@ public class StudentRegistration extends javax.swing.JFrame {
         Course.setText("");
         Year.setText("");
         Sem.setText("");
-    }//GEN-LAST:event_resetActionPerformed
-
-    private void add1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add1ActionPerformed
-        // TODO add your handling code here:
-        AddRegistration();
+            
+        }
         
-    }//GEN-LAST:event_add1ActionPerformed
-
+        
     
-        public void AddRegistration()
-    
-    {
-        
-        
-        String id = stid.getText();
-        String name =stdname.getText();
-        String add=stdaddress.getText();
-        String contact =number.getText();
-        String email =email_.getText();
-        String Password1 =pw1.getPassword().toString();
-        String Password2=pw2.getPassword().toString();
-        String Campus =campus.getText();
-        String Course =course.getText();
-        String Year =year.getText();
-        String sem =Sem.getText();
-        
-    }
     /**
      * @param args the command line arguments
      */
@@ -312,11 +431,13 @@ public class StudentRegistration extends javax.swing.JFrame {
     private javax.swing.JLabel campus;
     private javax.swing.JLabel contact;
     private javax.swing.JLabel course;
-    private javax.swing.JButton delete;
+    private javax.swing.JButton delete1;
+    private javax.swing.JButton delete2;
     private javax.swing.JButton edit;
     private javax.swing.JLabel email;
     private javax.swing.JTextField email_;
     private javax.swing.JRadioButton female;
+    private javax.swing.JButton gen;
     private javax.swing.JLabel gender;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
