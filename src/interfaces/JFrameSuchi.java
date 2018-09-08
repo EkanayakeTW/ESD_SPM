@@ -10,11 +10,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -53,6 +55,10 @@ public class JFrameSuchi extends javax.swing.JFrame {
     {
         //id.setText("");
         //name.setText("");
+
+        id.setText("");
+        name.setText("");
+
         address.setText("");
         contactNumber.setText("");
         email.setText("");
@@ -81,6 +87,14 @@ public class JFrameSuchi extends javax.swing.JFrame {
         } catch (Exception e) {
         }
         
+
+        
+        jComboBox_week.setSelectedIndex(0);
+        jComboBox_month.setSelectedIndex(0);
+        jTextArea_summary.setText("");
+        jTextArea_notes.setText("");
+        
+
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -98,10 +112,16 @@ public class JFrameSuchi extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+
+        jLabel7 = new javax.swing.JLabel();
+
         name = new javax.swing.JTextField();
         address = new javax.swing.JTextField();
         contactNumber = new javax.swing.JTextField();
         email = new javax.swing.JTextField();
+
+        id = new javax.swing.JTextField();
+
         specialization = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -115,6 +135,8 @@ public class JFrameSuchi extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jPanelAddWeekly = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -140,7 +162,11 @@ public class JFrameSuchi extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         id = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-
+        jLabel21 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea_notes = new javax.swing.JTextArea();
+        jButton3 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -171,8 +197,21 @@ public class JFrameSuchi extends javax.swing.JFrame {
         jPanel1.add(contactNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 472, -1));
         jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 472, -1));
 
+
         specialization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+        jLabel7.setText("Student ID");
+
+        id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idActionPerformed(evt);
+            }
+        });
+
+        specialization.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
                 specializationActionPerformed(evt);
             }
         });
@@ -205,6 +244,7 @@ public class JFrameSuchi extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 155, 31));
+
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton6.setText("UPDATE MY DETAILS");
@@ -248,6 +288,128 @@ public class JFrameSuchi extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel23)
                 .addContainerGap())
+
+        jButton4.setText("RESET");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("DEMO");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel9)
+                                        .addComponent(jLabel10))
+                                    .addGap(33, 33, 33)
+                                    .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(60, 60, 60)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel12)
+                                        .addComponent(jLabel11)))
+                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel2)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel15)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel3)
+                                                .addComponent(jLabel4)
+                                                .addComponent(jLabel5)
+                                                .addComponent(jLabel6))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(contactNumber, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(address, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(42, 42, 42)
+                                                    .addComponent(jLabel7)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(email)))
+                                        .addComponent(specialization, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(0, 61, Short.MAX_VALUE)))
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(163, 163, 163)
+                        .addComponent(jLabel1))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel13))
+                .addGap(63, 63, 63)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(contactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(117, 117, 117)
+                .addComponent(jLabel8)
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addComponent(specialization, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37))
+
         );
 
         getContentPane().add(jPanelAddWeekly, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, -1, -1));
@@ -285,19 +447,49 @@ public class JFrameSuchi extends javax.swing.JFrame {
         jLabel20.setText("Details and notes carried out, problems encountered and solved :  ");
         jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, -1, 17));
 
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel17.setText("Summary of the Key Tasks completed");
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel18.setText("Week");
+
+        jComboBox_week.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jComboBox_week.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please select", "Week 1", "Week 2", "Week 3", "Week 4" }));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel19.setText("Month");
+
+        jComboBox_month.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jComboBox_month.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please select", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
+
+        jTextArea_summary.setColumns(20);
+        jTextArea_summary.setRows(5);
+        jScrollPane1.setViewportView(jTextArea_summary);
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel20.setText("Details and notes carried out, problems encountered and solved etc, sketches  ");
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel21.setText("and dimensions to be given wherver possible");
+
+
         jTextArea_notes.setColumns(20);
         jTextArea_notes.setRows(5);
         jScrollPane2.setViewportView(jTextArea_notes);
 
+
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 482, 85));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
         jButton3.setText("SUBMIT");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+
         jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 460, 101, 30));
 
         jButton_ViewPDF.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -325,11 +517,16 @@ public class JFrameSuchi extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton4.setText("RESET");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
+
+        jButton6.setText("VIEW PDF");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButton6ActionPerformed(evt);
             }
         });
         jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 460, 89, 30));
+
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel21.setText("Weekly Entries");
@@ -371,6 +568,84 @@ public class JFrameSuchi extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_UpdateInfoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel22)
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(2, 2, 2)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane1)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(38, 38, 38)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel18)
+                                        .addComponent(jLabel19))
+                                    .addGap(27, 27, 27)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jComboBox_month, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jComboBox_week, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox_week, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel17))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(jComboBox_month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+
                 .addContainerGap())
         );
 
@@ -419,6 +694,7 @@ public class JFrameSuchi extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         String studentID = id.getText();
+
         
         String week = jComboBox_week.getSelectedItem().toString();
         String month = jComboBox_month.getSelectedItem().toString();
@@ -430,15 +706,66 @@ public class JFrameSuchi extends javax.swing.JFrame {
                             +"\n\nMonth       :   "+month
                             +"\n\nYear        :   "+year
                             +"\n\n----------------------------------------------------------------"
+
+        String studentName = name.getText();
+        String studentAddress = address.getText();
+        String studentContact = contactNumber.getText();
+        String studentEmail = email.getText();
+        String internship_title = title.getText();
+        String spec = specialization.getText();
+        
+        String week = jComboBox_week.getSelectedItem().toString();
+        String month = jComboBox_month.getSelectedItem().toString();
+        String summary =jTextArea_summary.getText();
+        String notes = jTextArea_notes.getText();
+        
+        String student_info = "                                               Form I - 3      -   Interns Daily Diary\n"
+                                    +"----------------------------------------------------------------"
+                                    +"----------------------------------------------------------------"
+                                    +"\n\n\n\n\nPersonal Details\n"
+                                    +"----------------------------------------------------------------"
+                                    +"----------------------------------------------------------------"
+                                    +"\n\n\n\nStudent ID                :       "+studentID
+                                    +"\n\nStudent Name          :       "+studentName
+                                    +"\n\nStudent Address      :       "+studentAddress
+                                    +"\n\nStudent Contact      :       "+studentContact
+                                    +"\n\nStudent Email         :       "+studentEmail
+                                    +"\n\n\n\n\nInternship Details\n"
+                                    +"----------------------------------------------------------------"
+                                    +"----------------------------------------------------------------"
+                                    +"\n\n\nInternship Title         :   "+internship_title
+                                    +"\n\nSpecialization          :   "+spec;
+        
+        String weekly_entry = "\nWeek        :   "+week
+                            +"\nMonth       :   "+month+"\n"
+                            +"----------------------------------------------------------------"
+
                             +"----------------------------------------------------------------"
                             +"\n\n\nSummary     : \n"+summary
                             +"\n\n\nNotes : \n"+notes;
         //validation
+
         if((jComboBox_week.getSelectedIndex()==0)|| (jComboBox_month.getSelectedIndex()==0)
                 ||(jComboBox_year.getSelectedIndex()==0)|| (jTextArea_summary.equals(""))
                 || (jTextArea_notes.equals("")))
         {
             JOptionPane.showMessageDialog(null, "Some fields are empty or Not selected");
+
+        if((studentID.equals("")) || (studentName.equals("")) || (studentAddress.equals("")) || (studentContact.equals(""))
+                || (studentEmail.equals(""))|| (internship_title.equals(""))|| (spec.equals(""))
+                || (jComboBox_week.getSelectedIndex()==0)|| (jComboBox_month.getSelectedIndex()==0)
+                || (jTextArea_summary.equals(""))|| (jTextArea_notes.equals("")))
+        {
+            JOptionPane.showMessageDialog(null, "Some fields are empty");
+        }
+        else if(studentContact.length()!=10)
+        {
+            JOptionPane.showMessageDialog(null, "Invalid Contact Number");
+        }
+        else if((!studentEmail.contains("@"))||(!studentEmail.contains("."))||(studentEmail.indexOf('@')>studentEmail.indexOf('.')))
+        {
+            JOptionPane.showMessageDialog(null, "Invalid E-mail Address");
+
         }
         else
         {
@@ -446,6 +773,7 @@ public class JFrameSuchi extends javax.swing.JFrame {
             if(x==0)
             {
                 //save data to pdf
+
                 SaveToPdf1 sp = new SaveToPdf1();
                 //check student directory exists
                 File dir = new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+studentID);
@@ -480,6 +808,29 @@ public class JFrameSuchi extends javax.swing.JFrame {
                         
                 }
                 
+
+                SaveToPdf sp = new SaveToPdf();
+                //check student directory exists
+                File dir = new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+studentID);
+                Boolean b  = dir.exists();
+                if(!b)//if dir not exists, new student
+                {
+                    //insert new student to db tb1 tb2
+                    //create new pdf and insert first part to pdf
+                    sp.addContent_NewPDF(studentID, student_info);
+                }
+                else if(b)//dir exists, existing student
+                {
+                    //update db p1 p2
+                    //update PDF first page 
+                }
+                
+                ////////////////////////////////////////////////////////////////
+                //append weekly entry to the existing pdf
+                sp.addContent_ExistingPDF(studentID, weekly_entry);
+                JOptionPane.showMessageDialog(null, "SUCEESSFULLY SAVED TO PDF");
+                System.out.println("SUCEESSFULLY SAVED TO PDF");
+
             }
             else
             {
@@ -494,6 +845,7 @@ public class JFrameSuchi extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+
         
            try{
             String ITnbr = id.getText();
@@ -552,6 +904,27 @@ public class JFrameSuchi extends javax.swing.JFrame {
         // TODO add your handling code here:
         String studentId = id.getText();
         File dir = new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+studentId+"\\"+studentId+".pdf");
+
+        // TODO add your handling code here:
+        id.setText("IT16139190");
+        name.setText("S.T.Attanayaka");
+        address.setText("Colombo,Sri Lanka");
+        contactNumber.setText("0112356893");
+        email.setText("suchini22@gmail.com");
+        title.setText("Trainee Engineer");
+        specialization.setText("Software Engineering");
+        
+        jComboBox_week.setSelectedIndex(1);
+        jComboBox_month.setSelectedIndex(1);
+        jTextArea_summary.setText("Summary goes here ..");
+        jTextArea_notes.setText("Notes and other details goes here ..");
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        String studentId = id.getText();
+        File dir = new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+studentId);
+
         Boolean b  = dir.exists();
                 
         if(!b)//pdf not exists
@@ -573,6 +946,7 @@ public class JFrameSuchi extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Check file details");
             }
         }
+
     }//GEN-LAST:event_jButton_ViewPDFActionPerformed
 
     private void jComboBox_yearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_yearActionPerformed
@@ -846,6 +1220,9 @@ public class JFrameSuchi extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+
     /**
      * @param args the command line arguments
      */
@@ -886,32 +1263,45 @@ public class JFrameSuchi extends javax.swing.JFrame {
     private javax.swing.JTextField contactNumber;
     private javax.swing.JTextField email;
     private javax.swing.JTextField id;
+
     private javax.swing.JButton jButton1;
+
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+
     private javax.swing.JButton jButton_ViewPDF;
     private javax.swing.JComboBox<String> jComboBox_month;
     private javax.swing.JComboBox<String> jComboBox_week;
     private javax.swing.JComboBox<String> jComboBox_year;
     private com.toedter.calendar.JDateChooser jDateChooser_from;
     private com.toedter.calendar.JDateChooser jDateChooser_to;
+
+    private javax.swing.JComboBox<String> jComboBox_month;
+    private javax.swing.JComboBox<String> jComboBox_week;
+
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+
     private javax.swing.JLabel jLabel16;
+
+    private javax.swing.JLabel jLabel15;
+
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -927,7 +1317,9 @@ public class JFrameSuchi extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea_notes;
     private javax.swing.JTextArea jTextArea_summary;
+
     private javax.swing.JTextField jTextField_lastEntry;
+
     private javax.swing.JTextField name;
     private javax.swing.JTextField specialization;
     private javax.swing.JTextField title;
