@@ -31,20 +31,20 @@ public class SaveToPdf {
             System.out.println("doc created");
             
             try {
-            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\temp.pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\temp.pdf"));
             document.open();
             Paragraph para = new Paragraph(description);
             document.add(para);
             document.close();
             
             //merge existing file(id.pdf) and newly created file(temp.pdf)
-            String f1 = "C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\"+id+".pdf";
-            String f2 = "C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\temp.pdf";
+            String f1 = "C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\"+id+".pdf";
+            String f2 = "C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\temp.pdf";
             
             PdfReader reader1 = new PdfReader(f1);
             PdfReader reader2 = new PdfReader(f2);
 
-            PdfCopyFields copy = new PdfCopyFields(new FileOutputStream("C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\Merged.pdf")) ;
+            PdfCopyFields copy = new PdfCopyFields(new FileOutputStream("C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\Merged.pdf")) ;
 
             copy.addDocument(reader1);
             copy.addDocument(reader2);
@@ -60,9 +60,9 @@ public class SaveToPdf {
             boolean success2 = file2.delete();
             
             //rename Merged.pdf file to StudentID
-            File merged_file = new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\Merged.pdf");
+            File merged_file = new File("C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\Merged.pdf");
             
-            boolean rename = merged_file.renameTo(new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\"+id+".pdf"));
+            boolean rename = merged_file.renameTo(new File("C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\"+id+".pdf"));
                 
             System.out.println("All successful !! ");
         } 
@@ -80,20 +80,20 @@ public class SaveToPdf {
             System.out.println("doc created");
             
             try {
-            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\temp.pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\temp.pdf"));
             document.open();
             Paragraph para = new Paragraph(description);
             document.add(para);
             document.close();
             
             //merge existing file(id.pdf) and newly created file(temp.pdf)
-            String f1 = "C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\"+id+".pdf";
-            String f2 = "C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\temp.pdf";
+            String f1 = "C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\"+id+".pdf";
+            String f2 = "C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\temp.pdf";
             
             PdfReader reader1 = new PdfReader(f1);
             PdfReader reader2 = new PdfReader(f2);
 
-            PdfCopyFields copy = new PdfCopyFields(new FileOutputStream("C:\\Users\\Dell\\Documents\\Form I-3\\Rejected\\Merged.pdf")) ;
+            PdfCopyFields copy = new PdfCopyFields(new FileOutputStream("C:\\Users\\Lenovo\\Documents\\Form I-3\\Rejected\\Merged.pdf")) ;
 
             copy.addDocument(reader1);
             copy.addDocument(reader2);
@@ -109,9 +109,9 @@ public class SaveToPdf {
             boolean success2 = file2.delete();
             
             //rename Merged.pdf file to StudentID
-            File merged_file = new File("C:\\Users\\Dell\\Documents\\Form I-3\\Rejected\\Merged.pdf");
+            File merged_file = new File("C:\\Users\\Lenovo\\Documents\\Form I-3\\Rejected\\Merged.pdf");
             
-            boolean rename = merged_file.renameTo(new File("C:\\Users\\Dell\\Documents\\Form I-3\\Rejected\\"+id+".pdf"));
+            boolean rename = merged_file.renameTo(new File("C:\\Users\\Lenovo\\Documents\\Form I-3\\Rejected\\"+id+".pdf"));
                 
             System.out.println("All successful !! ");
         } 
@@ -130,20 +130,20 @@ public class SaveToPdf {
             System.out.println("doc created");
             
             try {
-            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\temp.pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\temp.pdf"));
             document.open();
             Paragraph para = new Paragraph(description);
             document.add(para);
             document.close();
             
             //merge existing file(id.pdf) and newly created file(temp.pdf)
-            String f1 = "C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\"+id+".pdf";
-            String f2 = "C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\temp.pdf";
+            String f1 = "C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\"+id+".pdf";
+            String f2 = "C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\temp.pdf";
             
             PdfReader reader1 = new PdfReader(f1);
             PdfReader reader2 = new PdfReader(f2);
 
-            PdfCopyFields copy = new PdfCopyFields(new FileOutputStream("C:\\Users\\Dell\\Documents\\Form I-3\\Accepted\\Merged.pdf")) ;
+            PdfCopyFields copy = new PdfCopyFields(new FileOutputStream("C:\\Users\\Lenovo\\Documents\\Form I-3\\Accepted\\Merged.pdf")) ;
 
             copy.addDocument(reader1);
             copy.addDocument(reader2);
@@ -159,9 +159,9 @@ public class SaveToPdf {
             boolean success2 = file2.delete();
             
             //rename Merged.pdf file to StudentID
-            File merged_file = new File("C:\\Users\\Dell\\Documents\\Form I-3\\Accepted\\Merged.pdf");
+            File merged_file = new File("C:\\Users\\Lenovo\\Documents\\Form I-3\\Accepted\\Merged.pdf");
             
-            boolean rename = merged_file.renameTo(new File("C:\\Users\\Dell\\Documents\\Form I-3\\Accepted\\"+id+".pdf"));
+            boolean rename = merged_file.renameTo(new File("C:\\Users\\Lenovo\\Documents\\Form I-3\\Accepted\\"+id+".pdf"));
                 
             System.out.println("All successful !! ");
         } 
@@ -173,7 +173,7 @@ public class SaveToPdf {
     {
         //if not exists create directory
         System.out.println("directory "+id+" not exists");
-        File dir = new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+id);
+        File dir = new File("C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id);
         boolean successful = dir.mkdirs();
         System.out.println("directory "+id+" created");
                 
@@ -185,7 +185,7 @@ public class SaveToPdf {
             System.out.println("doc created");
             
         try {
-            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\"+id+".pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\"+id+".pdf"));
             document.open();
             Paragraph para = new Paragraph(student_info);
             document.add(para);
