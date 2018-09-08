@@ -5,9 +5,18 @@
  */
 package interfaces;
 
+import MainFiles.Dbconfig;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -15,35 +24,77 @@ import javax.swing.JOptionPane;
  * @author Dell
  */
 public class JFrameSuchi extends javax.swing.JFrame {
+    Connection con=null;
+    PreparedStatement pst=null;
+    ResultSet rs=null;
 
     /**
      * Creates new form JFrameSuchi
      */
     public JFrameSuchi() {
         initComponents();
+        String ITnbr = "IT16091344";//Login.username_.getText();
+        id.setText(ITnbr);
+        id.setEditable(false);
+        
+        con=Dbconfig.connect();
         
         Dimension tk = Toolkit.getDefaultToolkit().getScreenSize();
         int w = (int) tk.getWidth();
         int h = (int) tk.getHeight();
         System.out.println(w+","+h);
-        this.setSize(w, 730);
+        //this.setSize(w, h);
+        
+        jPanel_UpdateInfo.setBackground(new Color(240,240,240));
+        jPanelAddWeekly.setBackground(new Color(240,240,240));
+        jPanel1.setVisible(false);
+        jPanel2.setVisible(false);
     }
 
     public void resetAll()
     {
+        //id.setText("");
+        //name.setText("");
+
         id.setText("");
         name.setText("");
+
         address.setText("");
         contactNumber.setText("");
         email.setText("");
         title.setText("");
         specialization.setText("");
+        jDateChooser_from.setDate(null);
+        jDateChooser_to.setDate(null);
+        
+        jComboBox_week.setSelectedIndex(0);
+        jComboBox_month.setSelectedIndex(0);
+        jComboBox_year.setSelectedIndex(0);
+        jTextArea_summary.setText("");
+        jTextArea_notes.setText("");
+        
+        try {
+            String sql="SELECT * FROM `formi03p1` where student_ID=?";
+            pst=(PreparedStatement) con.prepareStatement(sql);
+            pst.setString(1,id.getText());
+            rs=pst.executeQuery();
+
+            if(rs.next())//id found
+            {
+                jTextField_lastEntry.setText(rs.getString("description"));
+                jTextField_lastEntry.setEditable(false);
+            }
+        } catch (Exception e) {
+        }
+        
+
         
         jComboBox_week.setSelectedIndex(0);
         jComboBox_month.setSelectedIndex(0);
         jTextArea_summary.setText("");
         jTextArea_notes.setText("");
         
+
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,21 +106,22 @@ public class JFrameSuchi extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+
         jLabel7 = new javax.swing.JLabel();
+
         name = new javax.swing.JTextField();
         address = new javax.swing.JTextField();
         contactNumber = new javax.swing.JTextField();
         email = new javax.swing.JTextField();
+
         id = new javax.swing.JTextField();
+
         specialization = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -77,6 +129,12 @@ public class JFrameSuchi extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         title = new javax.swing.JTextField();
+        jDateChooser_from = new com.toedter.calendar.JDateChooser();
+        jDateChooser_to = new com.toedter.calendar.JDateChooser();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jPanelAddWeekly = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -88,38 +146,60 @@ public class JFrameSuchi extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea_summary = new javax.swing.JTextArea();
         jLabel20 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea_notes = new javax.swing.JTextArea();
+        jButton3 = new javax.swing.JButton();
+        jButton_ViewPDF = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        jComboBox_year = new javax.swing.JComboBox<>();
+        jButton4 = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField_lastEntry = new javax.swing.JTextField();
+        jPanel_UpdateInfo = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        id = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea_notes = new javax.swing.JTextArea();
         jButton3 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
-
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel13.setText("Form I-3");
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Intern's Daily Diary");
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        jLabel14.setText("(To be filled by the Intern-Please ensure to email duly filled form after the completion of the internship to saman.g@sliit.lk)");
+        jLabel14.setText("(To be filled by the Intern)");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 665, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel2.setText("Intern's Information");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
 
         jLabel3.setText("Intern's Name");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
 
         jLabel4.setText("Intern's Private Address");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
 
         jLabel5.setText("Contact Number");
-
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel15.setText("Use comma(,) to seperate multiple e-mail addresses providing both company and personal e-mail");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
 
         jLabel6.setText("E-mail Address");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
+        jPanel1.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 472, -1));
+        jPanel1.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 472, -1));
+        jPanel1.add(contactNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 472, -1));
+        jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 472, -1));
+
+
+        specialization.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
 
         jLabel7.setText("Student ID");
 
@@ -131,20 +211,83 @@ public class JFrameSuchi extends javax.swing.JFrame {
 
         specialization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+
                 specializationActionPerformed(evt);
             }
         });
+        jPanel1.add(specialization, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 360, 155, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel8.setText("Internship Information");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
 
         jLabel9.setText("Internship Title");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, -1));
 
         jLabel10.setText("Overal Period From");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, -1, -1));
 
         jLabel11.setText("Specialization");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, -1, -1));
 
         jLabel12.setText("Period To");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 400, -1, -1));
+        jPanel1.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, 167, -1));
+        jPanel1.add(jDateChooser_from, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, 167, -1));
+        jPanel1.add(jDateChooser_to, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, 155, -1));
+
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton5.setText("VIEW MY DETAILS");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 155, 31));
+
+
+        jButton6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton6.setText("UPDATE MY DETAILS");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 470, 155, 31));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, 580));
+
+        jPanelAddWeekly.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelAddWeekly.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelAddWeeklyMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanelAddWeeklyMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jPanelAddWeeklyMouseReleased(evt);
+            }
+        });
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel23.setText("Add Weekly Entries");
+
+        javax.swing.GroupLayout jPanelAddWeeklyLayout = new javax.swing.GroupLayout(jPanelAddWeekly);
+        jPanelAddWeekly.setLayout(jPanelAddWeeklyLayout);
+        jPanelAddWeeklyLayout.setHorizontalGroup(
+            jPanelAddWeeklyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAddWeeklyLayout.createSequentialGroup()
+                .addContainerGap(30, Short.MAX_VALUE)
+                .addComponent(jLabel23)
+                .addGap(26, 26, 26))
+        );
+        jPanelAddWeeklyLayout.setVerticalGroup(
+            jPanelAddWeeklyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAddWeeklyLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel23)
+                .addContainerGap())
 
         jButton4.setText("RESET");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -266,9 +409,44 @@ public class JFrameSuchi extends javax.swing.JFrame {
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37))
+
         );
 
+        getContentPane().add(jPanelAddWeekly, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, -1, -1));
+
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jLabel17.setText("Summary of the Key Tasks completed :");
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 293, -1));
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel18.setText("Week");
+        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, 20));
+
+        jComboBox_week.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jComboBox_week.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please select", "Week 1", "Week 2", "Week 3", "Week 4" }));
+        jPanel2.add(jComboBox_week, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 111, -1));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel19.setText("Month");
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, -1, 20));
+
+        jComboBox_month.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jComboBox_month.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please select", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
+        jPanel2.add(jComboBox_month, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 117, -1));
+
+        jTextArea_summary.setColumns(20);
+        jTextArea_summary.setRows(5);
+        jScrollPane1.setViewportView(jTextArea_summary);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 480, 87));
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel20.setText("Details and notes carried out, problems encountered and solved :  ");
+        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, -1, 17));
+
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel17.setText("Summary of the Key Tasks completed");
@@ -295,9 +473,15 @@ public class JFrameSuchi extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel21.setText("and dimensions to be given wherver possible");
 
+
         jTextArea_notes.setColumns(20);
         jTextArea_notes.setRows(5);
         jScrollPane2.setViewportView(jTextArea_notes);
+
+
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 482, 85));
+
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jButton3.setText("SUBMIT");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -306,12 +490,84 @@ public class JFrameSuchi extends javax.swing.JFrame {
             }
         });
 
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 460, 101, 30));
+
+        jButton_ViewPDF.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton_ViewPDF.setText("VIEW PDF");
+        jButton_ViewPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ViewPDFActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton_ViewPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 460, -1, 30));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel16.setText("Year");
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, -1, 20));
+
+        jComboBox_year.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jComboBox_year.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year", "2018", "2019", "2020" }));
+        jComboBox_year.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_yearActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jComboBox_year, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 82, -1));
+
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton4.setText("RESET");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+
         jButton6.setText("VIEW PDF");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
+
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 460, 89, 30));
+
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel21.setText("Weekly Entries");
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+
+        jLabel1.setText("Last Entry : ");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, -1, -1));
+        jPanel2.add(jTextField_lastEntry, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 180, -1));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 650, 550));
+
+        jPanel_UpdateInfo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel_UpdateInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel_UpdateInfoMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel_UpdateInfoMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jPanel_UpdateInfoMouseReleased(evt);
+            }
+        });
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel22.setText("Intern Information");
+
+        javax.swing.GroupLayout jPanel_UpdateInfoLayout = new javax.swing.GroupLayout(jPanel_UpdateInfo);
+        jPanel_UpdateInfo.setLayout(jPanel_UpdateInfoLayout);
+        jPanel_UpdateInfoLayout.setHorizontalGroup(
+            jPanel_UpdateInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_UpdateInfoLayout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel_UpdateInfoLayout.setVerticalGroup(
+            jPanel_UpdateInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_UpdateInfoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel22)
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -389,8 +645,35 @@ public class JFrameSuchi extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+
                 .addContainerGap())
         );
+
+        getContentPane().add(jPanel_UpdateInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel13.setText("FORM   I - 3");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel7.setText("Student ID :");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 20, 100, -1));
+
+        id.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idActionPerformed(evt);
+            }
+        });
+        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, 100, 30));
+
+        jButton1.setText("Logout");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 40, 70, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -411,6 +694,19 @@ public class JFrameSuchi extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         String studentID = id.getText();
+
+        
+        String week = jComboBox_week.getSelectedItem().toString();
+        String month = jComboBox_month.getSelectedItem().toString();
+        String year = jComboBox_year.getSelectedItem().toString();
+        String summary =jTextArea_summary.getText();
+        String notes = jTextArea_notes.getText();
+        
+        String weekly_entry = "\nWeek        :   "+week
+                            +"\n\nMonth       :   "+month
+                            +"\n\nYear        :   "+year
+                            +"\n\n----------------------------------------------------------------"
+
         String studentName = name.getText();
         String studentAddress = address.getText();
         String studentContact = contactNumber.getText();
@@ -443,10 +739,18 @@ public class JFrameSuchi extends javax.swing.JFrame {
         String weekly_entry = "\nWeek        :   "+week
                             +"\nMonth       :   "+month+"\n"
                             +"----------------------------------------------------------------"
+
                             +"----------------------------------------------------------------"
                             +"\n\n\nSummary     : \n"+summary
                             +"\n\n\nNotes : \n"+notes;
         //validation
+
+        if((jComboBox_week.getSelectedIndex()==0)|| (jComboBox_month.getSelectedIndex()==0)
+                ||(jComboBox_year.getSelectedIndex()==0)|| (jTextArea_summary.equals(""))
+                || (jTextArea_notes.equals("")))
+        {
+            JOptionPane.showMessageDialog(null, "Some fields are empty or Not selected");
+
         if((studentID.equals("")) || (studentName.equals("")) || (studentAddress.equals("")) || (studentContact.equals(""))
                 || (studentEmail.equals(""))|| (internship_title.equals(""))|| (spec.equals(""))
                 || (jComboBox_week.getSelectedIndex()==0)|| (jComboBox_month.getSelectedIndex()==0)
@@ -461,6 +765,7 @@ public class JFrameSuchi extends javax.swing.JFrame {
         else if((!studentEmail.contains("@"))||(!studentEmail.contains("."))||(studentEmail.indexOf('@')>studentEmail.indexOf('.')))
         {
             JOptionPane.showMessageDialog(null, "Invalid E-mail Address");
+
         }
         else
         {
@@ -468,6 +773,42 @@ public class JFrameSuchi extends javax.swing.JFrame {
             if(x==0)
             {
                 //save data to pdf
+
+                SaveToPdf1 sp = new SaveToPdf1();
+                //check student directory exists
+                File dir = new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+studentID);
+                Boolean b  = dir.exists();
+                
+                if(b)//folder exists, existing student
+                {
+                    //update student details p1 p2
+                    try {
+                        String update_p1 ="UPDATE `formi03p1` SET `description`='"+week+"-"+month+"-"+year+"' "
+                                + "WHERE `student_ID`='"+studentID+"'";
+                        
+                        String update_p2 = "UPDATE `formi03p2` SET `description`='"+week+"-"+month+"-"+year+"' "
+                                + "WHERE `student_ID`='"+studentID+"'";
+                        
+                        pst=(PreparedStatement) con.prepareStatement(update_p1);
+                        pst.execute();//update p1
+                 
+                        pst=(PreparedStatement) con.prepareStatement(update_p2);
+                        pst.execute();//update p2
+                        
+                        } 
+                        catch (Exception e) 
+                        {
+                        }
+                    
+                        //append only 2nd part to existing pdf
+                        sp.addContent_ExistingPDF(studentID, weekly_entry);
+                        resetAll();
+                        JOptionPane.showMessageDialog(null, "SUCEESSFULLY Added Entry of "+week);
+                        System.out.println("SUCEESSFULLY ADDED TO PDF");
+                        
+                }
+                
+
                 SaveToPdf sp = new SaveToPdf();
                 //check student directory exists
                 File dir = new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+studentID);
@@ -489,6 +830,7 @@ public class JFrameSuchi extends javax.swing.JFrame {
                 sp.addContent_ExistingPDF(studentID, weekly_entry);
                 JOptionPane.showMessageDialog(null, "SUCEESSFULLY SAVED TO PDF");
                 System.out.println("SUCEESSFULLY SAVED TO PDF");
+
             }
             else
             {
@@ -503,6 +845,66 @@ public class JFrameSuchi extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+
+        
+           try{
+            String ITnbr = id.getText();
+            String sql="SELECT * FROM `formi03p1` where student_ID=?";
+            
+             pst=(PreparedStatement) con.prepareStatement(sql);
+             pst.setString(1,ITnbr);
+             rs=pst.executeQuery();
+             if(rs.next()){
+                name.setEnabled(true);
+                name.setEditable(false);
+                address.setEnabled(true);
+                contactNumber.setEnabled(true);
+                email.setEnabled(true);
+                title.setEnabled(true);
+                specialization.setEnabled(true);
+                jDateChooser_from.setEnabled(true);
+                jDateChooser_to.setEnabled(true);
+                 
+                 
+                 name.setText(rs.getString("student_name"));
+                 address.setText(rs.getString("student_address"));
+                 contactNumber.setText(rs.getString("student_contact"));
+                 email.setText(rs.getString("student_email"));
+                 title.setText(rs.getString("internship_title"));
+                 specialization.setText(rs.getString("specialisation"));
+                 
+                 java.util.Date from_date = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("from"));
+                 jDateChooser_from.setDate(from_date);
+                 
+                 java.util.Date to_date = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("to"));
+                 jDateChooser_to.setDate(to_date);
+                 
+                 id.setEditable(false);
+                 id.setForeground(Color.gray);
+                 
+             }
+             else{
+                 id.setText(ITnbr);
+                 id.setEditable(false);
+                 id.setForeground(Color.gray);
+                 JOptionPane.showMessageDialog(null, "Enter your details");
+             }
+             
+            
+        }catch(Exception e){
+            e.getMessage();
+        }
+// TODO add your handling code here:
+        
+        
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton_ViewPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ViewPDFActionPerformed
+        // TODO add your handling code here:
+        String studentId = id.getText();
+        File dir = new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+studentId+"\\"+studentId+".pdf");
+
         // TODO add your handling code here:
         id.setText("IT16139190");
         name.setText("S.T.Attanayaka");
@@ -522,6 +924,7 @@ public class JFrameSuchi extends javax.swing.JFrame {
         // TODO add your handling code here:
         String studentId = id.getText();
         File dir = new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+studentId);
+
         Boolean b  = dir.exists();
                 
         if(!b)//pdf not exists
@@ -543,7 +946,282 @@ public class JFrameSuchi extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Check file details");
             }
         }
+
+    }//GEN-LAST:event_jButton_ViewPDFActionPerformed
+
+    private void jComboBox_yearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_yearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox_yearActionPerformed
+
+    private void jPanel_UpdateInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_UpdateInfoMouseClicked
+        // TODO add your handling code here:
+        jPanel1.setVisible(true);
+        jPanel2.setVisible(false);
+        
+        name.setEnabled(false);
+        address.setEnabled(false);
+        contactNumber.setEnabled(false);
+        email.setEnabled(false);
+        title.setEnabled(false);
+        specialization.setEnabled(false);
+        jDateChooser_from.setEnabled(false);
+        jDateChooser_to.setEnabled(false);
+        resetAll();
+    }//GEN-LAST:event_jPanel_UpdateInfoMouseClicked
+
+    private void jPanelAddWeeklyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAddWeeklyMouseClicked
+        // TODO add your handling code here:
+        String studentID = id.getText();
+        
+        try 
+        {
+            String sql="SELECT * FROM `formi03p1` where student_ID=?";
+            pst=(PreparedStatement) con.prepareStatement(sql);
+            pst.setString(1,studentID);
+            rs=pst.executeQuery();
+
+            if(rs.next())//id found
+            {
+                jTextField_lastEntry.setText(rs.getString("description"));
+                jTextField_lastEntry.setEditable(false);
+                jPanel1.setVisible(false);
+                jPanel2.setVisible(true);
+                
+                //check pdf
+                
+                File dir = new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+studentID+"\\"+studentID+".pdf");
+                Boolean b  = dir.exists();
+
+                if(!b)//pdf not exists
+                {
+                    String studentName = rs.getString("student_name");
+                    String studentAddress = rs.getString("student_address");
+                    String studentContact = rs.getString("student_contact");
+                    String studentEmail = rs.getString("student_email");
+                    String internship_title = rs.getString("internship_title");
+                    String spec = rs.getString("specialisation");
+                    String from_date =rs.getString("from");
+                    String to_date = rs.getString("to");
+
+                    String student_info = "                                               Form I - 3      -   Interns Daily Diary\n"
+                                                +"----------------------------------------------------------------"
+                                                +"----------------------------------------------------------------"
+                                                +"\n\n\n\n\nPersonal Details\n"
+                                                +"----------------------------------------------------------------"
+                                                +"----------------------------------------------------------------"
+                                                +"\n\n\n\nStudent ID                :       "+studentID
+                                                +"\n\nStudent Name          :       "+studentName
+                                                +"\n\nStudent Address      :       "+studentAddress
+                                                +"\n\nStudent Contact      :       "+studentContact
+                                                +"\n\nStudent Email         :       "+studentEmail
+                                                +"\n\n\n\n\nInternship Details\n"
+                                                +"----------------------------------------------------------------"
+                                                +"----------------------------------------------------------------"
+                                                +"\n\n\nInternship Title          :   "+internship_title
+                                                +"\n\nSpecialization             :   "+spec
+                                                +"\n\nInternship Start Date      :   "+from_date
+                                                +"\n\nInternship End Date        :   "+to_date;
+                    
+                    SaveToPdf1 sp = new SaveToPdf1();
+                    sp.addContent_NewPDF(studentID, student_info);
+                }
+            }
+            else//id not found
+            {
+                jPanel1.setVisible(false);
+                jPanel2.setVisible(false);
+                JOptionPane.showMessageDialog(null, "Add your Information first !");
+            }
+        } catch (Exception e) {
+        }
+        
+    }//GEN-LAST:event_jPanelAddWeeklyMouseClicked
+
+    private void jPanelAddWeeklyMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAddWeeklyMousePressed
+        // TODO add your handling code here:
+        jPanelAddWeekly.setBackground(new Color(167,166,157));
+    }//GEN-LAST:event_jPanelAddWeeklyMousePressed
+
+    private void jPanelAddWeeklyMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAddWeeklyMouseReleased
+        // TODO add your handling code here:
+        jPanelAddWeekly.setBackground(new Color(240,240,240));
+    }//GEN-LAST:event_jPanelAddWeeklyMouseReleased
+
+    private void jPanel_UpdateInfoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_UpdateInfoMousePressed
+        // TODO add your handling code here:
+        jPanel_UpdateInfo.setBackground(new Color(167,166,157));
+    }//GEN-LAST:event_jPanel_UpdateInfoMousePressed
+
+    private void jPanel_UpdateInfoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_UpdateInfoMouseReleased
+        // TODO add your handling code here:
+        jPanel_UpdateInfo.setBackground(new Color(240,240,240));
+    }//GEN-LAST:event_jPanel_UpdateInfoMouseReleased
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        String studentID = id.getText();
+        String studentName = name.getText();
+        String studentAddress = address.getText();
+        String studentContact = contactNumber.getText();
+        String studentEmail = email.getText();
+        String internship_title = title.getText();
+        String spec = specialization.getText();
+        
+        SimpleDateFormat Date_Format = new SimpleDateFormat("yyyy-MM-dd"); 
+        String from_date =Date_Format.format(jDateChooser_from.getDate());
+        String to_date = Date_Format.format(jDateChooser_to.getDate());
+        
+        String student_info = "                                               Form I - 3      -   Interns Daily Diary\n"
+                                    +"----------------------------------------------------------------"
+                                    +"----------------------------------------------------------------"
+                                    +"\n\n\n\n\nPersonal Details\n"
+                                    +"----------------------------------------------------------------"
+                                    +"----------------------------------------------------------------"
+                                    +"\n\n\n\nStudent ID                :       "+studentID
+                                    +"\n\nStudent Name          :       "+studentName
+                                    +"\n\nStudent Address      :       "+studentAddress
+                                    +"\n\nStudent Contact      :       "+studentContact
+                                    +"\n\nStudent Email         :       "+studentEmail
+                                    +"\n\n\n\n\nInternship Details\n"
+                                    +"----------------------------------------------------------------"
+                                    +"----------------------------------------------------------------"
+                                    +"\n\n\nInternship Title          :   "+internship_title
+                                    +"\n\nSpecialization             :   "+spec
+                                    +"\n\nInternship Start Date      :   "+from_date
+                                    +"\n\nInternship End Date        :   "+to_date;
+        
+        //validation
+        if((studentID.equals("")) || (studentName.equals("")) || (studentAddress.equals("")) || (studentContact.equals(""))
+                || (studentEmail.equals(""))|| (internship_title.equals(""))|| (spec.equals(""))
+                ||(from_date.equals(""))||(to_date.equals("")))
+        {
+            JOptionPane.showMessageDialog(null, "Some fields are empty");
+        }
+        else if(studentContact.length()!=10)
+        {
+            JOptionPane.showMessageDialog(null, "Invalid Contact Number");
+        }
+        else if((!studentEmail.contains("@"))||(!studentEmail.contains("."))||(studentEmail.indexOf('@')>studentEmail.indexOf('.')))
+        {
+            JOptionPane.showMessageDialog(null, "Invalid E-mail Address");
+        }
+        else
+        {
+            int x = JOptionPane.showConfirmDialog(null, "Continue ?");
+            if(x==0)//yes
+            {
+                //save data to pdf
+                SaveToPdf1 sp = new SaveToPdf1();
+                //check student directory exists
+                File dir = new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+studentID);
+                Boolean b  = dir.exists();
+                if(!b)//folder not exists
+                {
+                    sp.addContent_NewPDF(studentID, student_info);
+
+                    try 
+                    {
+                        
+                        String insert_p1 = "INSERT INTO `formi03p1`(`student_ID`, `student_name`, `student_address`, "
+                                + "`student_contact`, `student_email`, `internship_title`, `specialisation`, `from`, `to`, "
+                                + "`description`) VALUES ('"+studentID+"','"+studentName+"','"+studentAddress+"','"
+                                +studentContact+"','"+studentEmail+"','"+internship_title+"','"+spec+"','"+from_date+"','"+to_date+"','')";
+                        
+                        String insert_p2 = "INSERT INTO `formi03p2`(`student_ID`, `student_email`, `from`, `to`, "
+                                + "`description`, `supervisor_name`, `marked_date`, `comment`, `status`) "
+                                + "VALUES ('"+studentID+"','"+studentEmail+"','"+from_date+"','"+to_date+"','',"
+                                + "'','','','')";
+                        
+                        pst=(PreparedStatement) con.prepareStatement(insert_p1);
+                        pst.execute();//insert to p1
+                 
+                        pst=(PreparedStatement) con.prepareStatement(insert_p2);
+                        pst.execute();//insert to p2
+                
+                    } 
+                    catch (Exception e)
+                    {
+                    }
+                    resetAll();
+                    JOptionPane.showMessageDialog(null, "SUCEESSFULL");
+                    System.out.println("SUCEESSFULLY SAVED new student TO PDF & to DB");
+                }
+                else if(b)//folder exists, existing student
+                {
+                    //update student details p1 p2
+                    try {
+                        String update_p1 ="UPDATE `formi03p1` SET `student_address`='"+studentAddress+"',`student_contact`='"+studentContact+"',"
+                                + "`student_email`='"+studentEmail+"',`internship_title`='"+internship_title+"',`specialisation`='"+spec+"',"
+                                + "`from`='"+from_date+"',`to`='"+to_date+"' "
+                                + "WHERE `student_ID`='"+studentID+"'";
+                        
+                        String update_p2 = "UPDATE `formi03p2` SET `student_email`='"+studentEmail+"',"
+                                + "`from`='"+from_date+"',`to`='"+to_date+"' "
+                                + "WHERE `student_ID`='"+studentID+"'";
+                        
+                        pst=(PreparedStatement) con.prepareStatement(update_p1);
+                        pst.execute();//update p1
+                 
+                        pst=(PreparedStatement) con.prepareStatement(update_p2);
+                        pst.execute();//update p2
+                        System.out.println("SUCEESSFULLY Modified Database");
+                        
+                    } 
+                    catch (Exception e) 
+                    {
+                    }
+                    
+                    //check pdf
+                    //check student pdf exists inside the folder
+                    File pdf_file = new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+studentID+"\\"+studentID+".pdf");
+                    Boolean vb  = pdf_file.exists();
+                    
+                    if(vb)//pdf exists
+                    {
+                        //modify first info page
+                        sp.updateFirstPage_PDF(studentID, student_info);
+                        
+                        resetAll();
+                        JOptionPane.showMessageDialog(null, "SUCEESSFULL");
+                        System.out.println("SUCEESSFULLY modified first page of PDF");
+                    } 
+                    
+                    else if(!vb)//folder exists but pdf not exists
+                    {
+                        //create new pdf and insert 1st & 2nd part to new pdf
+                        sp.addContent_NewPDF(studentID, student_info);
+                        resetAll();
+                        JOptionPane.showMessageDialog(null, "SUCEESSFULL");
+                        System.out.println("SUCEESSFULLY SAVED NEW PDF to existing folder ");
+                    }
+                    
+                }
+                
+            }
+            else
+            {
+                resetAll();
+                
+                JOptionPane.showMessageDialog(null, "Cancelled");
+            }
+                name.setEnabled(false);
+                address.setEnabled(false);
+                contactNumber.setEnabled(false);
+                email.setEnabled(false);
+                title.setEnabled(false);
+                specialization.setEnabled(false);
+                jDateChooser_from.setEnabled(false);
+                jDateChooser_to.setEnabled(false);    
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_jButton6ActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -585,25 +1263,45 @@ public class JFrameSuchi extends javax.swing.JFrame {
     private javax.swing.JTextField contactNumber;
     private javax.swing.JTextField email;
     private javax.swing.JTextField id;
+
+    private javax.swing.JButton jButton1;
+
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+
+    private javax.swing.JButton jButton_ViewPDF;
     private javax.swing.JComboBox<String> jComboBox_month;
     private javax.swing.JComboBox<String> jComboBox_week;
+    private javax.swing.JComboBox<String> jComboBox_year;
+    private com.toedter.calendar.JDateChooser jDateChooser_from;
+    private com.toedter.calendar.JDateChooser jDateChooser_to;
+
+    private javax.swing.JComboBox<String> jComboBox_month;
+    private javax.swing.JComboBox<String> jComboBox_week;
+
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+
+    private javax.swing.JLabel jLabel16;
+
     private javax.swing.JLabel jLabel15;
+
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -613,10 +1311,15 @@ public class JFrameSuchi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanelAddWeekly;
+    private javax.swing.JPanel jPanel_UpdateInfo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea_notes;
     private javax.swing.JTextArea jTextArea_summary;
+
+    private javax.swing.JTextField jTextField_lastEntry;
+
     private javax.swing.JTextField name;
     private javax.swing.JTextField specialization;
     private javax.swing.JTextField title;
