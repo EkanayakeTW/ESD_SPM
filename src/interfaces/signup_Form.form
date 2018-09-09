@@ -156,7 +156,7 @@
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/S_images/signup.png"/>
+          <Image iconType="2" name="C:\Viva2018SPM\ESD_SPM\src\S_images\signup.png"/>
         </Property>
       </Properties>
       <Constraints>
