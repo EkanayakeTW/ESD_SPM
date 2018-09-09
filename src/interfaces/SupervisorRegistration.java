@@ -32,6 +32,69 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         initComponents();
         
     }
+        public void AddRegistration()
+    
+    {
+        
+        
+        String id = spId.getText();
+        String name =svname.getText();
+        String supervisor_gender=buttonGroup1.getSelection().getActionCommand();
+        String contact =number.getText();
+        String email =email_1.getText();
+        String Password1 =pw1.getPassword().toString();
+        String Password2=pw3.getPassword().toString();
+        String Dept =dept.getText();
+        
+        
+        if((id.isEmpty())||(name.isEmpty())||(contact.isEmpty())
+                ||(email.isEmpty())
+                ||(Password1.isEmpty())||(Password2.isEmpty())
+                ||(Dept.isEmpty())){
+            spId.setBackground(Color.GREEN);
+            svname.setBackground(Color.GREEN);
+            number.setBackground(Color.GREEN);
+            email_1.setBackground(Color.GREEN);
+            dept.setBackground(Color.GREEN);
+            pw1.setBackground(Color.GREEN);
+            pw3.setBackground(Color.GREEN);
+           
+            JOptionPane.showMessageDialog(null, "WARNING FIELDS ARE EMPTY");
+            
+        }
+        else if(!id.startsWith("SPR")){
+            JOptionPane.showMessageDialog(null, "Invalid SPR number");
+        }
+        else if((contact.length()!=10)){
+            JOptionPane.showMessageDialog(null, "Invalid phone number");
+        }
+
+        else if(email.indexOf('@')==0 || email.indexOf('.')==0 ||email.indexOf('@')>email.indexOf('.')){
+            JOptionPane.showMessageDialog(null, "Invalid email address");
+        
+        } else
+        
+        try{
+                 String x="Insert into supervisorregistration(supervisor_id,supervisor_name,"
+               + "gender,contact_number,email,password1,"
+               + "password2,Dept)"
+               + "values('"+id+"','"+name+"','"+supervisor_gender+"','"+contact+"','"+email+"'"
+               + ",'"+Password1+"','"+Password2+"',"
+               + "'"+Dept+"')";
+                System.out.println("2nd");
+              pst=(PreparedStatement) con.prepareStatement(x);
+              System.out.println("3d");
+              pst.execute();
+                 
+                JOptionPane.showMessageDialog(null, "successfully added to the"
+                        + " SupervisorRegistration");
+                
+            }catch(Exception e){
+                e.getMessage();
+            }
+          
+        
+    }
     public void TableLoad() throws SQLException{
       
         try {
@@ -122,6 +185,11 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         buttonGroup1.add(male);
         male.setSelected(true);
         male.setText("Male");
+        male.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maleActionPerformed(evt);
+            }
+        });
         jPanel1.add(male, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, -1, -1));
 
         buttonGroup1.add(female);
@@ -231,7 +299,7 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         spId.setText("SPR15023156");
         svname.setText("Bihandu Sanchith");
         number.setText("0772359578");
-        dept.setText("B@gmail.com");
+        email_1.setText("B@gmail.com");
         pw1.setText("but123");
         pw3.setText("but123");
         dept.setText("SE");
@@ -247,13 +315,18 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         number.setText("");
         dept.setText("");
         pw1.setText("");
+        pw3.setText("");
         dept.setText("");
         
     }//GEN-LAST:event_resetActionPerformed
 
     private void add1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add1ActionPerformed
         // TODO add your handling code here:
+        try{
         AddRegistration();
+        }catch(Exception e){
+            e.getMessage();
+        }
         
     }//GEN-LAST:event_add1ActionPerformed
 
@@ -349,69 +422,12 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_deleteActionPerformed
 
-    
-        public void AddRegistration()
-    
-    {
-        
-        
-        String id = spId.getText();
-        String name =svname.getText();
-        String contact =number.getText();
-        String email =email_1.getText();
-        String Password1 =pw1.getPassword().toString();
-        String Password2=pw3.getPassword().toString();
-        String Dept =dept.getText();
-        
-        
-        if((id.isEmpty())||(name.isEmpty())||(contact.isEmpty())
-                ||(email.isEmpty())
-                ||(Password1.isEmpty())||(Password2.isEmpty())
-                ||(Dept.isEmpty())){
-            spId.setBackground(Color.GREEN);
-            svname.setBackground(Color.GREEN);
-            number.setBackground(Color.GREEN);
-            email_1.setBackground(Color.GREEN);
-            dept.setBackground(Color.GREEN);
-            pw1.setBackground(Color.GREEN);
-            pw3.setBackground(Color.GREEN);
-           
-            JOptionPane.showMessageDialog(null, "WARNING FIELDS ARE EMPTY");
-            
-        }
-        else if(!id.startsWith("SPR")){
-            JOptionPane.showMessageDialog(null, "Invalid SPR number");
-        }
-        else if((contact.length()!=10)){
-            JOptionPane.showMessageDialog(null, "Invalid phone number");
-        }
+    private void maleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_maleActionPerformed
 
-        else if(email.indexOf('@')==0 || email.indexOf('.')==0 ||email.indexOf('@')>email.indexOf('.')){
-            JOptionPane.showMessageDialog(null, "Invalid email address");
-        
-        } else
-        
-        try{
-                 String x="Insert into supervisorregistration(student_ID,student_name,"
-               + "student_address,student_gender,student_contact,student_email,"
-               + "student_password,student_password2,campus,"
-                         + "course,year,semester)"
-               + "values('"+id+"','"+name+"','"+contact+"','"+email+"'"
-               + ",'"+Password1+"','"+Password2+"',"
-               + "'"+Dept+"')";
-               // System.out.println("2nd");
-              pst=(PreparedStatement) con.prepareStatement(x);
-              pst.execute();
-                 
-                JOptionPane.showMessageDialog(null, "successfully added to the"
-                        + " SupervisorRegistration");
-                
-            }catch(Exception e){
-                e.getMessage();
-            }
-          
-        
-    }
+    
+
         
     /**
      * @param args the command line arguments
