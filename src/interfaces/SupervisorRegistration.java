@@ -232,6 +232,7 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         number.setText("0772359578");
         email_.setText("B@gmail.com");
         pw1.setText("but123");
+        pw3.setText("but123");
         dept.setText("SE");
         
         
