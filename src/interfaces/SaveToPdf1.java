@@ -219,15 +219,27 @@ public class SaveToPdf1 {
             String f2 = "C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\temp.pdf";
             
             PdfReader reader1 = new PdfReader(f1);
-            int last_page = reader1.getNumberOfPages();
-            reader1.selectPages("2-"+last_page); //select pages (2-end)
+            int page_count = reader1.getNumberOfPages();
             
             PdfReader reader2 = new PdfReader(f2);//front page
             
             PdfCopyFields copy = new PdfCopyFields(new FileOutputStream("C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\Merged.pdf")) ;
 
-            copy.addDocument(reader2);//add front page
-            copy.addDocument(reader1);//add selected(2-end)pages
+            if(page_count==1)
+            {
+                reader1.selectPages("1-"+page_count); //select pages (1-end)
+                copy.addDocument(reader2);//add front page
+            }
+            else
+            {
+                reader1.selectPages("2-"+page_count); //select pages (2-end)
+                copy.addDocument(reader2);//add front page
+                copy.addDocument(reader1);//add selected(2-end)pages
+            }
+            
+            
+            
+            
             copy.close();
             reader1.close();
             reader2.close();
