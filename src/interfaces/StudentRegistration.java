@@ -6,6 +6,7 @@
 package interfaces;
 
 import MainFiles.Dbconfig;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +14,10 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import net.proteanit.sql.DbUtils;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -30,6 +35,19 @@ public class StudentRegistration extends javax.swing.JFrame {
     public StudentRegistration() {
         initComponents();
         con=Dbconfig.connect();
+    }
+         public void TableLoad() throws SQLException{
+      
+        try {
+            String sql="select * from studentregistration";
+            
+            pst=(PreparedStatement) con.prepareStatement(sql);
+            rs=pst.executeQuery();
+            table.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentRegistration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }
 
     /**
@@ -74,13 +92,14 @@ public class StudentRegistration extends javax.swing.JFrame {
         add1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         view = new javax.swing.JButton();
         gen = new javax.swing.JButton();
         edit = new javax.swing.JButton();
         Demo1 = new javax.swing.JButton();
         delete1 = new javax.swing.JButton();
         delete2 = new javax.swing.JButton();
+        fake = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 51));
@@ -182,7 +201,7 @@ public class StudentRegistration extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(548, 628));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -193,25 +212,35 @@ public class StudentRegistration extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                tableMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(table);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 12, 501, -1));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 501, 390));
 
         view.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         view.setText("View ");
+        view.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewActionPerformed(evt);
+            }
+        });
         jPanel2.add(view, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 600, -1, -1));
 
         gen.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        gen.setText("Delete");
+        gen.setText("Report");
         jPanel2.add(gen, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 600, -1, -1));
 
         edit.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         edit.setText("Edit");
+        edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editActionPerformed(evt);
+            }
+        });
         jPanel2.add(edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 600, -1, -1));
 
         Demo1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -225,11 +254,17 @@ public class StudentRegistration extends javax.swing.JFrame {
 
         delete1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         delete1.setText("Delete");
+        delete1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delete1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(delete1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 600, -1, -1));
 
         delete2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         delete2.setText("Delete");
         jPanel2.add(delete2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 600, -1, -1));
+        jPanel2.add(fake, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, 60, 20));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, -1, 650));
 
@@ -266,22 +301,25 @@ public class StudentRegistration extends javax.swing.JFrame {
      
     }//GEN-LAST:event_add1ActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
        
         // TODO add your handling code here:
-         int row =jTable1.getSelectedRow();
-        String student_ID = jTable1.getValueAt(row,0).toString();
-        String student_name = jTable1.getValueAt(row,1).toString();
-        String student_address = jTable1.getValueAt(row,2).toString();
-        String student_gender = jTable1.getValueAt(row,3).toString();
-        String student_contact = jTable1.getValueAt(row,4).toString();
-        String student_email = jTable1.getValueAt(row,5).toString();
-        String student_password1 = jTable1.getValueAt(row,6).toString();
-        String student_password2 = jTable1.getValueAt(row,7).toString();
-        String campus_ = jTable1.getValueAt(row,8).toString();
-        String course_ = jTable1.getValueAt(row,9).toString();
-        String year_ = jTable1.getValueAt(row,10).toString();
-        String semester_ = jTable1.getValueAt(row,11).toString();
+        try{
+        DefaultTableModel model=(DefaultTableModel)table.getModel();
+         int row =table.getSelectedRow();
+        
+        String student_ID = table.getValueAt(row,0).toString();
+        String student_name = table.getValueAt(row,1).toString();
+        String student_address = table.getValueAt(row,2).toString();
+        String student_gender = table.getValueAt(row,3).toString();
+        String student_contact = table.getValueAt(row,4).toString();
+        String student_email = table.getValueAt(row,5).toString();
+        String student_password1 = table.getValueAt(row,6).toString();
+        String student_password2 = table.getValueAt(row,11).toString();
+        String campus_ = table.getValueAt(row,7).toString();
+        String course_ = table.getValueAt(row,8).toString();
+        String year_ = table.getValueAt(row,9).toString();
+        String semester_ = table.getValueAt(row,10).toString();
 
         stid.setText(student_ID);
         stdname.setText(student_name);
@@ -295,26 +333,105 @@ public class StudentRegistration extends javax.swing.JFrame {
         Course.setText(course_);
         Year.setText(year_);
         Sem.setText(semester_);
-    }//GEN-LAST:event_jTable1MouseClicked
+        }catch(Exception e){
+            e.getMessage();
+        }
+       
+    }//GEN-LAST:event_tableMouseClicked
+
+    private void viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewActionPerformed
+        try {
+            TableLoad();
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentRegistration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_viewActionPerformed
+
+    private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
+        int x = JOptionPane.showConfirmDialog(null, "Do you want to update this record");
+        
+        if (x==0){
+            String id = stid.getText();
+            String name = stdname.getText();
+            String add = stdaddress.getText();
+            if(male.isSelected())
+            {
+                 fake.setText("Male");
+                 String male = fake.getText();
+            }
+            else{
+                fake.setText("Female");
+                String female= fake.getText();
+            }
+            String contact = number.getText();
+            String mail = email_.getText();
+            String pw = pw1.getText();
+            String pw1 =pw2.getText();
+            String campus = Campus.getText();
+            String course = Course.getText();
+            String year = Year.getText();
+            String semester = Sem.getText();
+            
+            try{
+                String sql = "update studentregistration set student_name = '"+name+"',"
+                        + "student_address = '"+add+"',student_gender = '"+fake.getText()+"',"
+                        + "student_contact = '"+contact+"',student_email = '"+mail+"',"
+                        + "student_password = '"+pw+"',student_password2 = '"+pw1+"',"
+                        + "campus = '"+campus+"',course = '"+course+"',year = '"+year+"',"
+                        + "semester ='"+semester+"'where student_ID ='"+id+"'";
+                pst =(PreparedStatement)con.prepareStatement(sql);
+                pst.execute();
+                TableLoad();
+            }catch(Exception e){
+               e.getMessage();
+            }
+            
+          
+        }
+        
+    }//GEN-LAST:event_editActionPerformed
+
+    private void delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete1ActionPerformed
+        // TODO add your handling code here:
+        int x = JOptionPane.showConfirmDialog(null, "Do you want to delete this record");
+        
+        if (x==0){
+            String id = stid.getText();
+            
+            
+            try{
+                String sql = "delete from studentregistration where student_ID ='"+id+"'";
+                pst =(PreparedStatement)con.prepareStatement(sql);
+                pst.execute();
+                TableLoad();
+            }catch(Exception e){
+               e.getMessage();
+            }
+            
+          
+        }
+                             
+    }//GEN-LAST:event_delete1ActionPerformed
     private void AddStudentRegistration(){
     
         String student_ID=stid.getText();
         String student_name=stdname.getText();
         String student_address=stdaddress.getText();
         String student_gender=buttonGroup1.getSelection().getActionCommand();
-        int student_contact=Integer.parseInt(number.getText());
+        String student_contact=number.getText();
         String student_email=email_.getText();
         String student_password=pw1.getText();
         String student_password2=pw2.getText();
         String campus_=Campus.getText();
         String course_=Course.getText();
-        int year_=Integer.parseInt(Year.getText());
-        int semester_=Integer.parseInt(Sem.getText());
+        String year_=Year.getText();
+        String semester_=Sem.getText();
         
-        /*        if(stdname.isEmpty()||stid.isEmpty()||stdaddress.isEmpty()||number.
-        isEmpty()||email_.isEmpty()||pw1.isEmpty()||pw2.isEmpty()
-        ||Campus.isEmpty()||Course.isEmpty()||Year.isEmpty()||Sem.isEmpty()){
-            
+        if((student_ID.isEmpty())||(student_name.isEmpty())||(student_address.isEmpty())
+                ||(student_contact.isEmpty())
+                ||(student_email.isEmpty())||(student_password.isEmpty())
+                ||(student_password2.isEmpty())||(campus_.isEmpty())||(course_.isEmpty())
+                ||(year_.isEmpty())||semester_.isEmpty()){
             stid.setBackground(Color.GREEN);
             stdname.setBackground(Color.GREEN);
             stdaddress.setBackground(Color.GREEN);
@@ -329,7 +446,19 @@ public class StudentRegistration extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "WARNING FIELDS ARE EMPTY");
             
         }
-        */
+        else if(!student_ID.startsWith("IT")){
+            JOptionPane.showMessageDialog(null, "Invalid IT number");
+        }
+        else if((student_contact.length()!=10)){
+            JOptionPane.showMessageDialog(null, "Invalid phone number");
+        }
+
+        else if(student_email.indexOf('@')==0 || student_email.indexOf('.')==0 ||student_email.indexOf('@')>student_email.indexOf('.')){
+            JOptionPane.showMessageDialog(null, "Invalid email address");
+        }
+        else if((semester_.length()!=1)||year_.length()!=1){
+            JOptionPane.showMessageDialog(null, "Invalid semester");
+        } else
         
         try{
                  String x="Insert into studentregistration(student_ID,student_name,"
@@ -353,18 +482,7 @@ public class StudentRegistration extends javax.swing.JFrame {
           
         
     }
-     private void TableLoad(){
-      
-        try {
-            String sql="select * from studentregistration where student_ID=?";
-            
-            pst=(PreparedStatement) con.prepareStatement(sql);
-            rs=pst.executeQuery();
-        } catch (SQLException ex) {
-            Logger.getLogger(StudentRegistration.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-    }
+
         void Reset(){
         
         
@@ -436,6 +554,7 @@ public class StudentRegistration extends javax.swing.JFrame {
     private javax.swing.JButton edit;
     private javax.swing.JLabel email;
     private javax.swing.JTextField email_;
+    private javax.swing.JLabel fake;
     private javax.swing.JRadioButton female;
     private javax.swing.JButton gen;
     private javax.swing.JLabel gender;
@@ -447,7 +566,6 @@ public class StudentRegistration extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JRadioButton male;
     private javax.swing.JTextField number;
     private javax.swing.JLabel pw;
@@ -459,6 +577,7 @@ public class StudentRegistration extends javax.swing.JFrame {
     private javax.swing.JTextArea stdaddress;
     private javax.swing.JTextField stdname;
     private javax.swing.JTextField stid;
+    private javax.swing.JTable table;
     private javax.swing.JButton view;
     private javax.swing.JLabel year;
     // End of variables declaration//GEN-END:variables
