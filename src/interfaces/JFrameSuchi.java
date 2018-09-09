@@ -47,6 +47,7 @@ public class JFrameSuchi extends javax.swing.JFrame {
         jPanelAddWeekly.setBackground(new Color(240,240,240));
         jPanel1.setVisible(false);
         jPanel2.setVisible(false);
+        suchi_pic.setVisible(true);
     }
 
     public void resetAll()
@@ -113,6 +114,7 @@ public class JFrameSuchi extends javax.swing.JFrame {
         jDateChooser_to = new com.toedter.calendar.JDateChooser();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanelAddWeekly = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -137,8 +139,11 @@ public class JFrameSuchi extends javax.swing.JFrame {
         jPanel_UpdateInfo = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         id = new javax.swing.JTextField();
+        suchi_pic = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -213,9 +218,17 @@ public class JFrameSuchi extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 470, 155, 31));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 450, 155, 31));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, 580));
+        jButton2.setText("View My internship details");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, 160, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, 530));
 
         jPanelAddWeekly.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelAddWeekly.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -230,7 +243,7 @@ public class JFrameSuchi extends javax.swing.JFrame {
             }
         });
 
-        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel23.setText("Add Weekly Entries");
 
         javax.swing.GroupLayout jPanelAddWeeklyLayout = new javax.swing.GroupLayout(jPanelAddWeekly);
@@ -244,13 +257,10 @@ public class JFrameSuchi extends javax.swing.JFrame {
         );
         jPanelAddWeeklyLayout.setVerticalGroup(
             jPanelAddWeeklyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAddWeeklyLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel23)
-                .addContainerGap())
+            .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelAddWeekly, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, -1, -1));
+        getContentPane().add(jPanelAddWeekly, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, -1, 50));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -339,7 +349,7 @@ public class JFrameSuchi extends javax.swing.JFrame {
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, -1, -1));
         jPanel2.add(jTextField_lastEntry, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 180, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 650, 550));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 650, 550));
 
         jPanel_UpdateInfo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel_UpdateInfo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -354,35 +364,30 @@ public class JFrameSuchi extends javax.swing.JFrame {
             }
         });
 
-        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel22.setText("Intern Information");
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel22.setText("INTERNSHIP INFORMATION");
 
         javax.swing.GroupLayout jPanel_UpdateInfoLayout = new javax.swing.GroupLayout(jPanel_UpdateInfo);
         jPanel_UpdateInfo.setLayout(jPanel_UpdateInfoLayout);
         jPanel_UpdateInfoLayout.setHorizontalGroup(
             jPanel_UpdateInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_UpdateInfoLayout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 29, Short.MAX_VALUE)
+                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel_UpdateInfoLayout.setVerticalGroup(
             jPanel_UpdateInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_UpdateInfoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel22)
+                .addContainerGap()
+                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel_UpdateInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
+        getContentPane().add(jPanel_UpdateInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, 50));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel13.setText("FORM   I - 3");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel7.setText("Student ID :");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 20, 100, -1));
+        jLabel13.setText("FORM  I-03 ");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 630, -1));
 
         id.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         id.addActionListener(new java.awt.event.ActionListener() {
@@ -390,15 +395,32 @@ public class JFrameSuchi extends javax.swing.JFrame {
                 idActionPerformed(evt);
             }
         });
-        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, 100, 30));
+        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, 130, 30));
 
-        jButton1.setText("Logout");
+        suchi_pic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/S_images/Jframe_suchi.jpg"))); // NOI18N
+        getContentPane().add(suchi_pic, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 720, 450));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/S_images/user.png"))); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, 50, 50));
+
+        jLabel15.setText("<- LogOut");
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel15MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, -1, -1));
+
+        jLabel24.setText("Logged-in :");
+        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 130, 20));
+
+        jButton1.setText("Back to Main Menu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 40, 70, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -458,14 +480,11 @@ public class JFrameSuchi extends javax.swing.JFrame {
                         String update_p1 ="UPDATE `formi03p1` SET `description`='"+week+"-"+month+"-"+year+"' "
                                 + "WHERE `student_ID`='"+studentID+"'";
                         
-                        String update_p2 = "UPDATE `formi03p2` SET `description`='"+week+"-"+month+"-"+year+"' "
-                                + "WHERE `student_ID`='"+studentID+"'";
                         
                         pst=(PreparedStatement) con.prepareStatement(update_p1);
                         pst.execute();//update p1
                  
-                        pst=(PreparedStatement) con.prepareStatement(update_p2);
-                        pst.execute();//update p2
+                        
                         
                         } 
                         catch (Exception e) 
@@ -497,14 +516,12 @@ public class JFrameSuchi extends javax.swing.JFrame {
         
            try{
             String ITnbr = id.getText();
-            String sql="SELECT * FROM `formi03p1` where student_ID=?";
+            String sql="SELECT * FROM `studentregistration` where student_ID=?";
             
              pst=(PreparedStatement) con.prepareStatement(sql);
              pst.setString(1,ITnbr);
              rs=pst.executeQuery();
-             if(rs.next()){
                 name.setEnabled(true);
-                name.setEditable(false);
                 address.setEnabled(true);
                 contactNumber.setEnabled(true);
                 email.setEnabled(true);
@@ -512,20 +529,22 @@ public class JFrameSuchi extends javax.swing.JFrame {
                 specialization.setEnabled(true);
                 jDateChooser_from.setEnabled(true);
                 jDateChooser_to.setEnabled(true);
-                 
+                
+                name.setEditable(true);
+                address.setEditable(true);
+                contactNumber.setEnabled(true);
+                email.setEditable(true);
+                title.setEditable(true);
+                specialization.setEditable(true);
+             if(rs.next()){
+                
+                
                  
                  name.setText(rs.getString("student_name"));
                  address.setText(rs.getString("student_address"));
                  contactNumber.setText(rs.getString("student_contact"));
                  email.setText(rs.getString("student_email"));
-                 title.setText(rs.getString("internship_title"));
-                 specialization.setText(rs.getString("specialisation"));
                  
-                 java.util.Date from_date = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("from"));
-                 jDateChooser_from.setDate(from_date);
-                 
-                 java.util.Date to_date = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("to"));
-                 jDateChooser_to.setDate(to_date);
                  
                  id.setEditable(false);
                  id.setForeground(Color.gray);
@@ -583,6 +602,7 @@ public class JFrameSuchi extends javax.swing.JFrame {
         // TODO add your handling code here:
         jPanel1.setVisible(true);
         jPanel2.setVisible(false);
+        suchi_pic.setVisible(false);
         
         name.setEnabled(false);
         address.setEnabled(false);
@@ -605,14 +625,15 @@ public class JFrameSuchi extends javax.swing.JFrame {
             pst=(PreparedStatement) con.prepareStatement(sql);
             pst.setString(1,studentID);
             rs=pst.executeQuery();
+            
 
             if(rs.next())//id found
             {
-                jTextField_lastEntry.setText(rs.getString("description"));
+                //jTextField_lastEntry.setText(rs.getString("description"));
                 jTextField_lastEntry.setEditable(false);
                 jPanel1.setVisible(false);
                 jPanel2.setVisible(true);
-                
+                suchi_pic.setVisible(false);
                 //check pdf
                 
                 File dir = new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+studentID+"\\"+studentID+".pdf");
@@ -656,7 +677,8 @@ public class JFrameSuchi extends javax.swing.JFrame {
             {
                 jPanel1.setVisible(false);
                 jPanel2.setVisible(false);
-                JOptionPane.showMessageDialog(null, "Add your Information first !");
+                suchi_pic.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Register first !");
             }
         } catch (Exception e) {
         }
@@ -754,9 +776,9 @@ public class JFrameSuchi extends javax.swing.JFrame {
                                 +studentContact+"','"+studentEmail+"','"+internship_title+"','"+spec+"','"+from_date+"','"+to_date+"','')";
                         
                         String insert_p2 = "INSERT INTO `formi03p2`(`student_ID`, `student_email`, `from`, `to`, "
-                                + "`description`, `supervisor_name`, `marked_date`, `comment`, `status`) "
+                                + "`supervisor_name`, `marked_date`, `comment`, `status`) "
                                 + "VALUES ('"+studentID+"','"+studentEmail+"','"+from_date+"','"+to_date+"','',"
-                                + "'','','','')";
+                                + "'','','')";
                         
                         pst=(PreparedStatement) con.prepareStatement(insert_p1);
                         pst.execute();//insert to p1
@@ -841,10 +863,76 @@ public class JFrameSuchi extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        Login l1=new Login();
+        l1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel15MouseClicked
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        mainForm m1 = new mainForm();
+        m1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        try{
+            String ITnbr = id.getText();
+            String sql="SELECT * FROM `formi03p1` where student_ID=?";
+            
+             pst=(PreparedStatement) con.prepareStatement(sql);
+             pst.setString(1,ITnbr);
+             rs=pst.executeQuery();
+                name.setEnabled(true);
+                address.setEnabled(true);
+                contactNumber.setEnabled(true);
+                email.setEnabled(true);
+                title.setEnabled(true);
+                specialization.setEnabled(true);
+                jDateChooser_from.setEnabled(true);
+                jDateChooser_to.setEnabled(true);
+                
+                name.setEditable(true);
+                address.setEditable(true);
+                contactNumber.setEnabled(true);
+                email.setEditable(true);
+                title.setEditable(true);
+                specialization.setEditable(true);
+             if(rs.next()){
+                
+                
+                 
+//                 name.setText(rs.getString("student_name"));
+//                 address.setText(rs.getString("student_address"));
+//                 contactNumber.setText(rs.getString("student_contact"));
+//                 email.setText(rs.getString("student_email"));
+                 title.setText(rs.getString("internship_title"));
+                 specialization.setText(rs.getString("specialisation"));
+                 
+                 java.util.Date from_date = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("from"));
+                 jDateChooser_from.setDate(from_date);
+                 
+                 java.util.Date to_date = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("to"));
+                 jDateChooser_to.setDate(to_date);
+                 
+                 id.setEditable(false);
+                 id.setForeground(Color.gray);
+                 
+             }
+             else{
+                 id.setText(ITnbr);
+                 id.setEditable(false);
+                 id.setForeground(Color.gray);
+                 JOptionPane.showMessageDialog(null, "Enter your internship details");
+             }
+             
+            
+        }catch(Exception e){
+            e.getMessage();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -887,6 +975,7 @@ public class JFrameSuchi extends javax.swing.JFrame {
     private javax.swing.JTextField email;
     private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -903,6 +992,7 @@ public class JFrameSuchi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -912,6 +1002,7 @@ public class JFrameSuchi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -930,6 +1021,7 @@ public class JFrameSuchi extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField_lastEntry;
     private javax.swing.JTextField name;
     private javax.swing.JTextField specialization;
+    private javax.swing.JLabel suchi_pic;
     private javax.swing.JTextField title;
     // End of variables declaration//GEN-END:variables
 }
