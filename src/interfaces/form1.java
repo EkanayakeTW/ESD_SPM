@@ -150,6 +150,7 @@ public class form1 extends javax.swing.JFrame {
         stu_year = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         JTable3 = new javax.swing.JTable();
         jLabel30 = new javax.swing.JLabel();
@@ -382,6 +383,14 @@ public class form1 extends javax.swing.JFrame {
         jScrollPane5.setViewportView(jTable1);
 
         jPanel6.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-170, 17, 140, 420));
+
+        jButton3.setText("Back");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, -1, -1));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -757,6 +766,13 @@ public class form1 extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        mainForm mf = new mainForm();
+        mf.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -799,6 +815,7 @@ public class form1 extends javax.swing.JFrame {
     private javax.swing.JTextField esname;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JInternalFrame jInternalFrame1;

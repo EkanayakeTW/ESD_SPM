@@ -104,6 +104,8 @@ public class Form_I03P2 extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel15 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1400, 800));
@@ -236,7 +238,7 @@ public class Form_I03P2 extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(table);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 1290, 100));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1290, 100));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/S_images/Adobe-PDF-Document-icon.png"))); // NOI18N
@@ -271,6 +273,17 @@ public class Form_I03P2 extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/S_images/user.png"))); // NOI18N
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(1300, 0, 50, 50));
+
+        jLabel20.setText("<- LogOut");
+        jLabel20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel20MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(1300, 50, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -330,7 +343,7 @@ public class Form_I03P2 extends javax.swing.JFrame {
         String id = table.getValueAt(r, 0).toString();
         //
         
-        File dir = new File("C:\\Users\\Lenovo\\Documents\\Form I-3\\Accepted\\"+id+".pdf");
+        File dir = new File("C:\\Users\\Dell\\Documents\\Form I-3\\Accepted\\"+id+".pdf");
         Boolean b  = dir.exists();
         
               
@@ -339,7 +352,7 @@ public class Form_I03P2 extends javax.swing.JFrame {
             try {
             
                 String command = "rundll32 url.dll, FileProtocolHandler "+
-                    "C:\\Users\\Lenovo\\Documents\\Form I-3\\Accepted\\"+id+".pdf";
+                    "C:\\Users\\Dell\\Documents\\Form I-3\\Accepted\\"+id+".pdf";
                 Runtime.getRuntime().exec(command);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Check file details");
@@ -354,7 +367,7 @@ public class Form_I03P2 extends javax.swing.JFrame {
             try {
             
                 String command = "rundll32 url.dll, FileProtocolHandler "+
-                    "C:\\Users\\Lenovo"
+                    "C:\\Users\\Dell"
                         + "\\Documents\\Form I-3\\Rejected\\"+id+".pdf";
                 Runtime.getRuntime().exec(command);
             } catch (Exception e) {
@@ -364,7 +377,7 @@ public class Form_I03P2 extends javax.swing.JFrame {
         
         
         
-        File newdir = new File("C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\"+id+".pdf");
+        File newdir = new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\"+id+".pdf");
         Boolean a  = newdir.exists();
                 
         if(!a)//pdf not exists
@@ -380,7 +393,7 @@ public class Form_I03P2 extends javax.swing.JFrame {
             try {
             
             String command = "rundll32 url.dll, FileProtocolHandler "+
-                    "C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\"+id+".pdf";
+                    "C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\"+id+".pdf";
             Runtime.getRuntime().exec(command);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Check file details");
@@ -508,6 +521,12 @@ public class Form_I03P2 extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jLabel20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseClicked
+        Login l1=new Login();
+        l1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel20MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -559,7 +578,9 @@ public class Form_I03P2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
