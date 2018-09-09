@@ -100,6 +100,7 @@ public class StudentRegistration extends javax.swing.JFrame {
         delete1 = new javax.swing.JButton();
         delete2 = new javax.swing.JButton();
         fake = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 51));
@@ -268,6 +269,14 @@ public class StudentRegistration extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, -1, 650));
 
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -412,6 +421,13 @@ public class StudentRegistration extends javax.swing.JFrame {
         }
                              
     }//GEN-LAST:event_delete1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        mainForm m1 = new mainForm();
+        m1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
     private void AddStudentRegistration(){
     
         String student_ID=stid.getText();
@@ -558,6 +574,7 @@ public class StudentRegistration extends javax.swing.JFrame {
     private javax.swing.JRadioButton female;
     private javax.swing.JButton gen;
     private javax.swing.JLabel gender;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
