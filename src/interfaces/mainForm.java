@@ -66,6 +66,7 @@ public class mainForm extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         name = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -99,7 +100,7 @@ public class mainForm extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 270, 46));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 496, 270, 30));
 
         jButton4.setText("Form I-01 Part 1");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -140,6 +141,14 @@ public class mainForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 270, 46));
+
+        jButton9.setText("Dashboard");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 270, 46));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 290, 530));
 
@@ -221,6 +230,13 @@ public class mainForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        Admin_Dashboard em = new Admin_Dashboard();
+        em.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton9ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -265,6 +281,7 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

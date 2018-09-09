@@ -201,21 +201,13 @@ jTextArea1.setText("Student ID : "+student_id_+"\n student name :"+student_name_
             System.out.println("doc created");
             
             try {
-            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\temp.pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\Dell\\Documents\\Form1\\"+id+".pdf"));
             document.open();
             Paragraph para = new Paragraph(description);
             document.add(para);
             document.close();
-              File merged_file = new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\Merged.pdf");
-            
-            boolean rename = merged_file.renameTo(new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\"+id+".pdf"));
-                
-            System.out.println("All successful !! ");
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
         }
-           
-           
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
