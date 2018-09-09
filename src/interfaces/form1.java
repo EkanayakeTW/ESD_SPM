@@ -1,5 +1,12 @@
 package interfaces;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import MainFiles.Dbconfig;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,13 +18,64 @@ package interfaces;
  * @author FC
  */
 public class form1 extends javax.swing.JFrame {
-
+        Connection conn=null;
+        PreparedStatement pst=null;
+        PreparedStatement pst1=null;
+        
+        //result set for tables
+        ResultSet rs=null;
+        ResultSet rs1=null;
+        
+       
+      
+        
+        
+        
     /**
      * Creates new form form1
      */
     public form1() {
         initComponents();
+        
+        //connect to db
+        conn=Dbconfig.connect();
+        
+        //load form 1 part 1 details to the table
+        tableload2();
+        
+        //load form 1 part 2 details to the table
+        tableload1();
     }
+    
+     //load form 1 part 2 details to the table
+    public void tableload1()
+    {
+        try {
+            String sql="select * from formi01p2";
+            pst1=conn.prepareStatement(sql);
+            rs1=pst1.executeQuery();
+            jTable4.setModel(DbUtils.resultSetToTableModel(rs1));
+            
+            
+        } catch (Exception e) {
+        }
+    }
+    
+    //load form 1 part 1 details to the table
+     public void tableload2()
+    {
+        try {
+            String sq="select * from formi01p1"; //problem 
+            pst=conn.prepareStatement(sq);
+            rs=pst.executeQuery();
+            JTable3.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            
+        } catch (Exception e) {
+        }
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,18 +89,10 @@ public class form1 extends javax.swing.JFrame {
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
+        jLabel31 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -50,7 +100,6 @@ public class form1 extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -59,14 +108,6 @@ public class form1 extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -78,25 +119,41 @@ public class form1 extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
-        jTextField15 = new javax.swing.JTextField();
-        jTextField18 = new javax.swing.JTextField();
+        empname = new javax.swing.JTextField();
+        empaddress = new javax.swing.JTextField();
+        supname = new javax.swing.JTextField();
+        supphone = new javax.swing.JTextField();
+        suptitle = new javax.swing.JTextField();
+        supemail = new javax.swing.JTextField();
+        noofhours = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        task = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        learn = new javax.swing.JTextArea();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        jTextField19 = new javax.swing.JTextField();
+        esname = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
-        jTextField20 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        stu_address = new javax.swing.JLabel();
+        stu_email = new javax.swing.JLabel();
+        stu_name = new javax.swing.JLabel();
+        stu_id = new javax.swing.JLabel();
+        stu_cgpa = new javax.swing.JLabel();
+        stu_mobile_phone = new javax.swing.JLabel();
+        stu_home_phone = new javax.swing.JLabel();
+        stu_semester = new javax.swing.JLabel();
+        stu_year = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        JTable3 = new javax.swing.JTable();
+        jLabel30 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,76 +161,8 @@ public class form1 extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 255), null));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane4.setViewportView(jTable1);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 122, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, -1));
-
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 255), null));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane5.setViewportView(jTable2);
-
-        jPanel4.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(962, 12, 189, 567));
-
-        jButton4.setText("Update");
-        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 587, -1, -1));
-
-        jButton5.setText("Delete");
-        jPanel4.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 628, -1, -1));
-
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane6.setViewportView(jTable3);
-
-        jPanel4.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(962, 12, 189, 567));
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -186,9 +175,17 @@ public class form1 extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable4MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable4);
 
-        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 170, -1));
+        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 107, 170, 380));
+
+        jLabel31.setText("Form i 1completed details");
+        jPanel4.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 140, 40));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1139, 0, 210, -1));
 
@@ -214,118 +211,102 @@ public class form1 extends javax.swing.JFrame {
         jLabel5.setText("Student ID no ");
         jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, -1, -1));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        jPanel6.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 178, 20));
-
         jLabel6.setText("Student's Name");
-        jPanel6.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 110, 99, 23));
+        jPanel6.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 99, 23));
 
         jLabel7.setText("Address");
-        jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 139, 99, 23));
+        jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 99, 23));
 
         jLabel8.setText("Mobile Phone");
-        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 99, 23));
+        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, 99, 23));
 
         jLabel9.setText("Home phone");
-        jPanel6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 168, 99, 23));
+        jPanel6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 99, 23));
 
         jLabel10.setText("Semester");
-        jPanel6.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 248, -1, 23));
+        jPanel6.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, 23));
 
         jLabel11.setText("E-mail Addresses");
-        jPanel6.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 201, 99, 23));
+        jPanel6.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 99, 30));
 
         jLabel12.setText("Year");
-        jPanel6.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(258, 248, 34, 23));
+        jPanel6.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 34, 23));
 
         jLabel13.setText("GPA");
-        jPanel6.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(514, 248, 31, 23));
-        jPanel6.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 110, 540, -1));
-        jPanel6.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 160, -1));
-        jPanel6.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 170, 168, -1));
-        jPanel6.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 202, 530, -1));
-        jPanel6.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 140, 540, -1));
-        jPanel6.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 249, 98, -1));
-        jPanel6.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 249, 95, -1));
-        jPanel6.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(549, 249, 64, -1));
+        jPanel6.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 230, 31, 23));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel14.setText("*Use comma (,) to separate multiple e-mail addresses");
-        jPanel6.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 228, 394, -1));
+        jPanel6.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 394, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel15.setText("(To be filled by the employer)");
-        jPanel6.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 282, -1, -1));
+        jPanel6.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
         jLabel16.setText("Employer's Name");
-        jPanel6.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 310, 170, -1));
+        jPanel6.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 170, -1));
 
         jLabel18.setText("Employer's Address");
-        jPanel6.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 336, 160, -1));
+        jPanel6.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 160, 20));
 
         jLabel19.setText("Internship Start Date");
-        jPanel6.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 414, 240, -1));
+        jPanel6.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 240, -1));
 
         jLabel20.setText("Supervisor's Title");
-        jPanel6.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 388, 210, -1));
+        jPanel6.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 210, -1));
 
         jLabel21.setText("Supervisor's Name");
-        jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 362, 180, -1));
+        jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 180, -1));
 
-        jLabel22.setText("Noof Hours/Week");
-        jPanel6.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 465, 99, -1));
+        jLabel22.setText("No of Hours/Week");
+        jPanel6.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 99, -1));
 
         jLabel23.setText("Supervisor's E-mail");
-        jPanel6.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 99, 20));
+        jPanel6.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, 99, 20));
 
         jLabel24.setText("Supervisor's Phone");
-        jPanel6.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 360, 99, -1));
+        jPanel6.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, 99, -1));
 
         jLabel25.setText("Internship End date");
-        jPanel6.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 410, 99, -1));
-        jPanel6.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 307, 620, -1));
-        jPanel6.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 333, 620, -1));
-        jPanel6.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, 140, -1));
-        jPanel6.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 360, 280, -1));
-        jPanel6.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(281, 385, 140, -1));
-        jPanel6.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(614, 385, 280, -1));
-        jPanel6.add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 462, 190, -1));
+        jPanel6.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 400, 99, -1));
+        jPanel6.add(empname, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 620, -1));
+        jPanel6.add(empaddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 620, -1));
+        jPanel6.add(supname, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 140, -1));
+        jPanel6.add(supphone, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 340, 280, -1));
+        jPanel6.add(suptitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, 140, -1));
+        jPanel6.add(supemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 370, 280, -1));
+        jPanel6.add(noofhours, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 190, -1));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel26.setText("(Recommended period is no less than 6 months)");
-        jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 442, 383, -1));
+        jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 424, 383, 20));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel17.setText("Please list the tasks the stuents is expected to complete");
-        jPanel6.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 360, -1));
+        jPanel6.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 360, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        task.setColumns(20);
+        task.setRows(5);
+        jScrollPane1.setViewportView(task);
 
-        jPanel6.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, 803, 30));
+        jPanel6.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 803, 30));
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane3.setViewportView(jTextArea2);
+        learn.setColumns(20);
+        learn.setRows(5);
+        jScrollPane3.setViewportView(learn);
 
-        jPanel6.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 803, 30));
+        jPanel6.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, 803, 30));
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel27.setText("List what the student will learn during the internship period");
-        jPanel6.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 580, 360, -1));
+        jPanel6.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 360, -1));
 
         jLabel28.setText("External supervisor's Name");
-        jPanel6.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 600, 145, -1));
-        jPanel6.add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 600, 166, -1));
+        jPanel6.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 580, 145, -1));
+        jPanel6.add(esname, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 580, 166, -1));
 
         jLabel29.setText("Date");
-        jPanel6.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 600, -1, -1));
-        jPanel6.add(jTextField20, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 600, 223, -1));
+        jPanel6.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 580, -1, -1));
 
         jButton1.setText("Submit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -333,23 +314,121 @@ public class form1 extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel6.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 600, -1, -1));
+        jPanel6.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 580, -1, -1));
+
+        jButton4.setText("Update");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 580, -1, 23));
+
+        jButton5.setText("Delete");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 580, -1, 23));
+
+        stu_address.setBackground(new java.awt.Color(204, 204, 204));
+        stu_address.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel6.add(stu_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 740, 20));
+
+        stu_email.setBackground(new java.awt.Color(204, 204, 204));
+        stu_email.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel6.add(stu_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 740, 20));
+
+        stu_name.setBackground(new java.awt.Color(204, 204, 204));
+        stu_name.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel6.add(stu_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 740, 20));
+
+        stu_id.setBackground(new java.awt.Color(204, 204, 204));
+        stu_id.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel6.add(stu_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 170, 20));
+
+        stu_cgpa.setBackground(new java.awt.Color(204, 204, 204));
+        stu_cgpa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel6.add(stu_cgpa, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 230, 170, 20));
+
+        stu_mobile_phone.setBackground(new java.awt.Color(204, 204, 204));
+        stu_mobile_phone.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel6.add(stu_mobile_phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 360, 20));
+
+        stu_home_phone.setBackground(new java.awt.Color(204, 204, 204));
+        stu_home_phone.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel6.add(stu_home_phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 290, 20));
+
+        stu_semester.setBackground(new java.awt.Color(204, 204, 204));
+        stu_semester.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel6.add(stu_semester, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 170, 20));
+
+        stu_year.setBackground(new java.awt.Color(204, 204, 204));
+        stu_year.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel6.add(stu_year, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 170, 20));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(jTable1);
+
+        jPanel6.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-170, 17, 140, 420));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 928, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 1050, 680));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 940, 680));
+
+        JTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        JTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTable3MouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(JTable3);
+
+        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 170, 440));
+
+        jLabel30.setText("Form I-1 details(filled by students)");
+        jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 190, 60));
+
+        jButton2.setText("view details");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 560, -1, -1));
 
         jTabbedPane1.addTab("Form I-1", jPanel1);
         jPanel1.getAccessibleContext().setAccessibleName("Form I-1");
@@ -389,11 +468,294 @@ public class form1 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        //get data from textfield 
+        
+        String student_id_=stu_id.getText();
+        String student_name_=stu_name.getText();
+        String student_address_=stu_address.getText();
+        String student_home_phone_=stu_home_phone.getText();
+        String student_mobile_phone_=stu_mobile_phone.getText();
+        String student_email_=stu_email.getText();
+        String student_semester_=stu_semester.getText();
+        String  student_year_=stu_year.getText();
+        String student_cgpa_=stu_cgpa.getText();
+        
+        String emp_name=empname.getText();
+        String emp_address= empaddress.getText();
+        String super_name=supname.getText();
+        String super_phone=supphone.getText();
+        String super_title=suptitle.getText();
+        String super_email=supemail.getText();
+        String start_date="";
+        String end_date="";
+        
+        String no_of_hours=noofhours.getText();
+        String task_list=task.getText();
+        String learn_=learn.getText();
+        String ex_super_name=esname.getText();
+        String ldate="";
+        
+        //validate text fields
+         if((emp_name.isEmpty())||(emp_address.isEmpty())||(super_name.isEmpty())||(super_phone.isEmpty())||(super_title.isEmpty())
+                ||(super_email.isEmpty())||(no_of_hours.isEmpty())||(task_list.isEmpty())||(learn_.isEmpty())||(ex_super_name.isEmpty())){
+                     JOptionPane.showMessageDialog(null, "Fill all fields");
+        }
+        else if(!student_id_.startsWith("IT")){
+            JOptionPane.showMessageDialog(null, "Invalid IT number");
+        }
+        else if((super_phone.length()!=10)||(super_phone.length()!=10)){
+            JOptionPane.showMessageDialog(null, "Invalid phone number");
+        }
+
+        else if(super_email.indexOf('@')==0 || super_email.indexOf('.')==0 ||super_email.indexOf('@')>super_email.indexOf('.')){
+            JOptionPane.showMessageDialog(null, "Invalid email address");
+        }
+        else if((student_semester_.length()!=1)||student_year_.length()!=1){
+            JOptionPane.showMessageDialog(null, "Invalid semester");
+        }
+        else{
+        
+            try{
+                
+                //insert into dataa base
+                 String q="Insert into formi01p2(student_id,student_name,"
+               + "student_address,student_home_phone,student_mobile_phone,"
+               + "student_email,student_semester,student_year,student_cgpa,employer_name,employer_address,"
+                         + "supervisor_name,supervisor_phone,supervisor_title,supervisor_email,internship_start,internship_end,no_of_hrs,task_expected_to_complete,learn_during_intern,Ex_supervisor_name,ldate)"
+               + "values('"+student_id_+"','"+student_name_+"','"+student_address_+"'"
+               + ",'"+student_home_phone_+"','"+student_mobile_phone_+"',"
+               + "'"+student_email_+"','"+student_semester_+"',"
+                         + "'"+student_year_+"','"+student_cgpa_+"','"+emp_name+"','"+emp_address+"','"+super_name+"',"
+                         + "'"+super_phone+"','"+super_title+"','"+super_email+"','"+start_date+"','"+end_date+"',"
+                         + "'"+no_of_hours+"','"+task_list+"','"+learn_+"','"+ex_super_name+"','"+ldate+"')";
+               
+              pst=(PreparedStatement) conn.prepareStatement(q);
+              pst.execute();
+              
+              JOptionPane.showMessageDialog(null, "successfully added");
+                
+            }catch(Exception e){
+                e.getMessage();
+            }
+        }
+        
+            stu_id.setText("");
+            stu_name.setText("");
+            stu_address.setText("");  
+            stu_home_phone.setText("");  
+            stu_mobile_phone.setText("");
+            stu_email.setText("");
+            stu_semester.setText("");
+            stu_year.setText("");
+            stu_cgpa.setText("");
+            
+            empname.setText("");
+            empaddress.setText("");
+            supname.setText("");
+            supphone.setText("");
+            suptitle.setText("");
+            supemail.setText("");
+        //    isdate.setText("");
+        //    iedate.setText("");
+            noofhours.setText("");
+            task.setText("");
+            learn.setText("");
+            esname.setText("");
+          //  ldate.setText("");
+           
+            tableload1();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void JTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTable3MouseClicked
+       
+        
+        //To get fata to the text fields from the selected row of student details table
+        int r= JTable3.getSelectedRow();
+        
+        
+         String student_id_=JTable3.getValueAt(r, 0).toString();
+        String student_name_=JTable3.getValueAt(r, 1).toString();
+        String student_address_=JTable3.getValueAt(r, 2).toString();
+        String student_home_phone_=JTable3.getValueAt(r, 3).toString();
+        String student_mobile_phone_=JTable3.getValueAt(r, 4).toString();
+        String student_email_=JTable3.getValueAt(r, 5).toString();
+        String student_semester_=JTable3.getValueAt(r, 6).toString();
+        String  student_year_=JTable3.getValueAt(r, 7).toString();
+        String student_cgpa_=JTable3.getValueAt(r, 8).toString();
+        
+                 stu_id.setText(student_id_);
+                 stu_name.setText(student_name_);
+                 stu_address.setText(student_address_);
+                 stu_home_phone.setText(student_home_phone_);
+                 stu_mobile_phone.setText(student_mobile_phone_);
+                 stu_email.setText(student_email_);
+                 stu_semester.setText(student_semester_);
+                 stu_year.setText(student_year_);
+                 stu_cgpa.setText(student_cgpa_);
+    }//GEN-LAST:event_JTable3MouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+        
+         String student_id_=stu_id.getText();
+        String student_name_=stu_name.getText();
+        String student_address_=stu_address.getText();
+        String student_home_phone_=stu_home_phone.getText();
+        String student_mobile_phone_=stu_mobile_phone.getText();
+        String student_email_=stu_email.getText();
+        String student_semester_=stu_semester.getText();
+        String  student_year_=stu_year.getText();
+        String student_cgpa_=stu_cgpa.getText();
+        
+        String emp_name=empname.getText();
+        String emp_address= empaddress.getText();
+        String super_name=supname.getText();
+        String super_phone=supphone.getText();
+        String super_title=suptitle.getText();
+        String super_email=supemail.getText();
+        String start_date="";
+        String end_date="";
+        
+        String no_of_hours=noofhours.getText();
+        String task_list=task.getText();
+        String learn_=learn.getText();
+        String ex_super_name=esname.getText();
+        String ldate="";
+        
+        
+         if((emp_name.isEmpty())||(emp_address.isEmpty())||(super_name.isEmpty())||(super_phone.isEmpty())||(super_title.isEmpty())
+                ||(super_email.isEmpty())||(no_of_hours.isEmpty())||(task_list.isEmpty())||(learn_.isEmpty())||(ex_super_name.isEmpty())){
+                     JOptionPane.showMessageDialog(null, "Fill all fields");
+        }
+        else if(!student_id_.startsWith("IT")){
+            JOptionPane.showMessageDialog(null, "Invalid IT number");
+        }
+        else if((super_phone.length()!=10)||(super_phone.length()!=10)){
+            JOptionPane.showMessageDialog(null, "Invalid phone number");
+        }
+
+        else if(super_email.indexOf('@')==0 || super_email.indexOf('.')==0 ||super_email.indexOf('@')>super_email.indexOf('.')){
+            JOptionPane.showMessageDialog(null, "Invalid email address");
+        }
+        else if((student_semester_.length()!=1)||student_year_.length()!=1){
+            JOptionPane.showMessageDialog(null, "Invalid semester");
+        }
+        else{
+        
+            try{
+                 String q="Update formi01p1 set employer_name='"+emp_name+"',employer_address='"+emp_address+"',supervisor_name='"+super_name+"',supervisor_phone='"+super_phone+"',spervisor_title='"+super_title+"',supervisor_email='"+super_email+"',internship_start='"+start_date+"',internship_end='"+end_date+"',no_of_hrs='"+no_of_hours+"',task_expwected_to_complete='"+task_list+"',learn_during_intern='"+learn_+"',Ex_supervisor_name='"+ex_super_name+"',ldate='"+ldate+"' where student_ID='"+student_id_+"'";
+               
+              pst=(PreparedStatement) conn.prepareStatement(q);
+              pst.execute();
+              
+              JOptionPane.showMessageDialog(null, "successfully added");
+                
+            }catch(Exception e){
+                e.getMessage();
+            }
+        }
+        
+         //reset textfields
+            stu_id.setText("");
+            stu_name.setText("");
+            stu_address.setText("");  
+            stu_home_phone.setText("");  
+            stu_mobile_phone.setText("");
+            stu_email.setText("");
+            stu_semester.setText("");
+            stu_year.setText("");
+            stu_cgpa.setText("");
+            
+            empname.setText("");
+            empaddress.setText("");
+            supname.setText("");
+            supphone.setText("");
+            suptitle.setText("");
+            supemail.setText("");
+        //    isdate.setText("");
+        //    iedate.setText("");
+            noofhours.setText("");
+            task.setText("");
+            learn.setText("");
+            esname.setText("");
+          //  ldate.setText("");
+           
+            
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
+        // TODO add your handling code here:
+        
+        //get values from table clicked row values
+        int r= jTable4.getSelectedRow();
+         String student_id_=jTable4.getValueAt(r, 0).toString();
+        String student_name_=jTable4.getValueAt(r, 1).toString();
+        String student_address_=jTable4.getValueAt(r, 2).toString();
+        String student_home_phone_=jTable4.getValueAt(r, 3).toString();
+        String student_mobile_phone_=jTable4.getValueAt(r, 4).toString();
+        String student_email_=jTable4.getValueAt(r, 5).toString();
+        String student_semester_=jTable4.getValueAt(r, 6).toString();
+        String  student_year_=jTable4.getValueAt(r, 7).toString();
+        String student_cgpa_=jTable4.getValueAt(r, 8).toString();
+        
+         String emp_name=jTable4.getValueAt(r, 9).toString();
+        String emp_address= jTable4.getValueAt(r, 10).toString();
+        String super_name=jTable4.getValueAt(r, 11).toString();
+        String super_phone=jTable4.getValueAt(r, 12).toString();
+        String super_title=jTable4.getValueAt(r, 13).toString();
+        String super_email=jTable4.getValueAt(r, 14).toString();
+        String start_date="";
+        String end_date="";
+        
+        String no_of_hours=jTable4.getValueAt(r, 17).toString();
+        String task_list=jTable4.getValueAt(r, 18).toString();
+        String learn_=jTable4.getValueAt(r, 19).toString();
+        String ex_super_name=jTable4.getValueAt(r, 20).toString();
+        String ldate="";
+        
+                 stu_id.setText(student_id_);
+                 stu_name.setText(student_name_);
+                 stu_address.setText(student_address_);
+                 stu_home_phone.setText(student_home_phone_);
+                 stu_mobile_phone.setText(student_mobile_phone_);
+                 stu_email.setText(student_email_);
+                 stu_semester.setText(student_semester_);
+                 stu_year.setText(student_year_);
+                 stu_cgpa.setText(student_cgpa_);
+                 
+                  empname.setText(emp_name);
+            empaddress.setText(emp_address);
+            supname.setText(super_name);
+            supphone.setText(super_phone);
+            suptitle.setText(super_title);
+            supemail.setText(super_email);
+        //    isdate.setText("");
+        //    iedate.setText("");
+            noofhours.setText(no_of_hours);
+            task.setText(task_list);
+            learn.setText(learn_);
+            esname.setText(ex_super_name);
+          //  ldate.setText("");
+        
+        
+    }//GEN-LAST:event_jTable4MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+        // load another form
+        formi1pdf form=new formi1pdf();
+        form.setVisible(true);
+        this.dispose();
+        
+       
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -431,7 +793,12 @@ public class form1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JTable3;
+    private javax.swing.JTextField empaddress;
+    private javax.swing.JTextField empname;
+    private javax.swing.JTextField esname;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JInternalFrame jInternalFrame1;
@@ -458,6 +825,8 @@ public class form1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -465,40 +834,32 @@ public class form1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextArea learn;
+    private javax.swing.JTextField noofhours;
+    private javax.swing.JLabel stu_address;
+    private javax.swing.JLabel stu_cgpa;
+    private javax.swing.JLabel stu_email;
+    private javax.swing.JLabel stu_home_phone;
+    private javax.swing.JLabel stu_id;
+    private javax.swing.JLabel stu_mobile_phone;
+    private javax.swing.JLabel stu_name;
+    private javax.swing.JLabel stu_semester;
+    private javax.swing.JLabel stu_year;
+    private javax.swing.JTextField supemail;
+    private javax.swing.JTextField supname;
+    private javax.swing.JTextField supphone;
+    private javax.swing.JTextField suptitle;
+    private javax.swing.JTextArea task;
     // End of variables declaration//GEN-END:variables
 }
