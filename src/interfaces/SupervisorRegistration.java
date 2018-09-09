@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -70,12 +71,12 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         spId = new javax.swing.JTextField();
         svname = new javax.swing.JTextField();
         number = new javax.swing.JTextField();
-        email_ = new javax.swing.JTextField();
-        dept = new javax.swing.JPasswordField();
+        dept = new javax.swing.JTextField();
         pw1 = new javax.swing.JPasswordField();
         reset = new javax.swing.JButton();
         add1 = new javax.swing.JButton();
         pw3 = new javax.swing.JPasswordField();
+        email_1 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         view = new javax.swing.JButton();
         delete = new javax.swing.JButton();
@@ -135,7 +136,6 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         jPanel1.add(spId, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 200, 30));
         jPanel1.add(svname, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 200, 30));
         jPanel1.add(number, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 210, 30));
-        jPanel1.add(email_, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 210, 30));
         jPanel1.add(dept, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 510, 210, 30));
         jPanel1.add(pw1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 210, 30));
 
@@ -157,6 +157,7 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         });
         jPanel1.add(add1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 600, -1, -1));
         jPanel1.add(pw3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, 210, 30));
+        jPanel1.add(email_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 210, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 560, 650));
 
@@ -230,7 +231,7 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         spId.setText("SPR15023156");
         svname.setText("Bihandu Sanchith");
         number.setText("0772359578");
-        email_.setText("B@gmail.com");
+        dept.setText("B@gmail.com");
         pw1.setText("but123");
         pw3.setText("but123");
         dept.setText("SE");
@@ -244,7 +245,7 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         spId.setText("");
         svname.setText("");
         number.setText("");
-        email_.setText("");
+        dept.setText("");
         pw1.setText("");
         dept.setText("");
         
@@ -275,7 +276,7 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         svname.setText(supervisor_name);
         male.setText(supervisor_gender);
         number.setText(contact);
-        email_.setText(email);
+        dept.setText(email);
         pw1.setText(password1);
         pw3.setText(password2);
         }catch(Exception e){
@@ -303,7 +304,7 @@ public class SupervisorRegistration extends javax.swing.JFrame {
                 String female= fake.getText();
             }
             String contact = number.getText();
-            String mail = email_.getText();
+            String mail = dept.getText();
             String pw = pw1.getText();
             String pw1 =pw3.getText();
             
@@ -357,11 +358,58 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         String id = spId.getText();
         String name =svname.getText();
         String contact =number.getText();
-        String email =email_.getText();
+        String email =email_1.getText();
         String Password1 =pw1.getPassword().toString();
-        String Password2=dept.getPassword().toString();
-        String Campus =campus.getText();
-        String Dept = dept.getText();
+        String Password2=pw3.getPassword().toString();
+        String Dept =dept.getText();
+        
+        
+        if((id.isEmpty())||(name.isEmpty())||(contact.isEmpty())
+                ||(email.isEmpty())
+                ||(Password1.isEmpty())||(Password2.isEmpty())
+                ||(Dept.isEmpty())){
+            spId.setBackground(Color.GREEN);
+            svname.setBackground(Color.GREEN);
+            number.setBackground(Color.GREEN);
+            email_1.setBackground(Color.GREEN);
+            dept.setBackground(Color.GREEN);
+            pw1.setBackground(Color.GREEN);
+            pw3.setBackground(Color.GREEN);
+           
+            JOptionPane.showMessageDialog(null, "WARNING FIELDS ARE EMPTY");
+            
+        }
+        else if(!id.startsWith("SPR")){
+            JOptionPane.showMessageDialog(null, "Invalid SPR number");
+        }
+        else if((contact.length()!=10)){
+            JOptionPane.showMessageDialog(null, "Invalid phone number");
+        }
+
+        else if(email.indexOf('@')==0 || email.indexOf('.')==0 ||email.indexOf('@')>email.indexOf('.')){
+            JOptionPane.showMessageDialog(null, "Invalid email address");
+        
+        } else
+        
+        try{
+                 String x="Insert into supervisorregistration(student_ID,student_name,"
+               + "student_address,student_gender,student_contact,student_email,"
+               + "student_password,student_password2,campus,"
+                         + "course,year,semester)"
+               + "values('"+id+"','"+name+"','"+contact+"','"+email+"'"
+               + ",'"+Password1+"','"+Password2+"',"
+               + "'"+Dept+"')";
+               // System.out.println("2nd");
+              pst=(PreparedStatement) con.prepareStatement(x);
+              pst.execute();
+                 
+                JOptionPane.showMessageDialog(null, "successfully added to the"
+                        + " SupervisorRegistration");
+                
+            }catch(Exception e){
+                e.getMessage();
+            }
+          
         
     }
         
@@ -410,10 +458,10 @@ public class SupervisorRegistration extends javax.swing.JFrame {
     private javax.swing.JLabel campus;
     private javax.swing.JLabel contact;
     private javax.swing.JButton delete;
-    private javax.swing.JPasswordField dept;
+    private javax.swing.JTextField dept;
     private javax.swing.JButton edit;
     private javax.swing.JLabel email;
-    private javax.swing.JTextField email_;
+    private javax.swing.JTextField email_1;
     private javax.swing.JLabel fake;
     private javax.swing.JRadioButton female;
     private javax.swing.JLabel gender;

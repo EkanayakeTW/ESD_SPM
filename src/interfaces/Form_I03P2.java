@@ -11,12 +11,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import net.proteanit.sql.DbUtils;
 
-import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.parser.PdfTextExtractor;
-import java.io.IOException;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author Asus
@@ -37,6 +36,15 @@ public class Form_I03P2 extends javax.swing.JFrame {
         
         con = Dbconfig.connect();
         tableload ();
+        txtname.setEditable(false);
+        txtname.setEditable(false);
+        txtaddress.setEditable(false);
+        txtmail.setEditable(false);
+        txtcontact.setEditable(false);
+        txtTitle.setEditable(false);
+        txtTo.setEditable(false);
+        txtFrom.setEditable(false);
+        txtspecial.setEditable(false);
     }
   public void tableload (){
        try{
@@ -78,19 +86,13 @@ public class Form_I03P2 extends javax.swing.JFrame {
         txtname = new javax.swing.JTextField();
         txtTitle = new javax.swing.JTextField();
         txtspecial = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         comment = new javax.swing.JTextArea();
         jLabel16 = new javax.swing.JLabel();
         txtSuName = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        description = new javax.swing.JTextArea();
-        btreport = new javax.swing.JButton();
         btaccept = new javax.swing.JButton();
-        btedit = new javax.swing.JButton();
-        btreject = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -99,6 +101,9 @@ public class Form_I03P2 extends javax.swing.JFrame {
         caldate = new com.toedter.calendar.JDateChooser();
         jRadioButton_accept = new javax.swing.JRadioButton();
         jRadioButton_reject = new javax.swing.JRadioButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel15 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1400, 800));
@@ -172,70 +177,48 @@ public class Form_I03P2 extends javax.swing.JFrame {
         txtspecial.setEditable(false);
         getContentPane().add(txtspecial, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 500, 230, -1));
 
-        jLabel15.setText("Description");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 590, -1, -1));
-
         comment.setColumns(20);
         comment.setRows(5);
         jScrollPane2.setViewportView(comment);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 470, 390, 90));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 580, 390, 40));
 
         jLabel16.setText("Supervisor Name");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 660, -1, -1));
-        getContentPane().add(txtSuName, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 650, 240, -1));
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 580, -1, -1));
+        getContentPane().add(txtSuName, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 580, 240, -1));
 
         jLabel17.setText("Date");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 660, -1, -1));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 580, -1, -1));
 
         jLabel18.setText("Comment");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 500, -1, -1));
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 590, -1, -1));
 
-        description.setEditable(false);
-        description.setColumns(20);
-        description.setRows(5);
-        jScrollPane3.setViewportView(description);
-
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 570, 630, 70));
-
-        btreport.setText("Generate Report");
-        getContentPane().add(btreport, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 640, -1, -1));
-
+        btaccept.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btaccept.setIcon(new javax.swing.ImageIcon(getClass().getResource("/S_images/comment-add-icon.png"))); // NOI18N
         btaccept.setText("Submit comment");
         btaccept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btacceptActionPerformed(evt);
             }
         });
-        getContentPane().add(btaccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 640, -1, -1));
-
-        btedit.setText("Edit");
-        getContentPane().add(btedit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 640, 70, -1));
-
-        btreject.setText("Reject");
-        btreject.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btrejectActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btreject, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 640, 70, -1));
+        getContentPane().add(btaccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 670, -1, -1));
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Student ID", "Student Name", "Student Address", "Contact No", "Student e-mail", "Internship Title", "Specialisation", "From", "To", "Description"
+                "Student ID", "Student Name", "Student Address", "Contact No", "Student e-mail", "Internship Title", "Specialisation", "From", "To"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, true, false
+                false, false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -255,22 +238,39 @@ public class Form_I03P2 extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 1290, 100));
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/S_images/Adobe-PDF-Document-icon.png"))); // NOI18N
         jButton1.setText("View");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 690, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 670, 140, -1));
         getContentPane().add(txtTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 540, 230, -1));
         getContentPane().add(txtFrom, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 540, 230, -1));
-        getContentPane().add(caldate, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 660, -1, -1));
+        getContentPane().add(caldate, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 580, 160, -1));
 
         jRadioButton_accept.setText("Accept");
-        getContentPane().add(jRadioButton_accept, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 580, -1, -1));
+        getContentPane().add(jRadioButton_accept, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 630, -1, -1));
 
         jRadioButton_reject.setText("Reject");
-        getContentPane().add(jRadioButton_reject, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 600, -1, -1));
+        getContentPane().add(jRadioButton_reject, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 630, -1, -1));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 1400, 10));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabel15.setText("For Office Use Only");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 580, -1, -1));
+
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/S_images/Button-Previous-icon.png"))); // NOI18N
+        jButton4.setText("Back");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -288,7 +288,7 @@ public class Form_I03P2 extends javax.swing.JFrame {
         String specialisation = table.getValueAt(r, 6).toString();
         String from = table.getValueAt(r, 7).toString();
         String to = table.getValueAt(r, 8).toString();
-        String description = table.getValueAt(r, 9).toString();
+        
         
         txtname.setText(name);
         txtid.setText(id);
@@ -326,23 +326,75 @@ public class Form_I03P2 extends javax.swing.JFrame {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-         int r = table.getSelectedRow();
+        int r = table.getSelectedRow();
         String id = table.getValueAt(r, 0).toString();
-        try {
+        //
+        
+        File dir = new File("C:\\Users\\Lenovo\\Documents\\Form I-3\\Accepted\\"+id+".pdf");
+        Boolean b  = dir.exists();
+        
+              
+        if(b)//pdf exists in accepted folder
+        {
+            try {
+            
+                String command = "rundll32 url.dll, FileProtocolHandler "+
+                    "C:\\Users\\Lenovo\\Documents\\Form I-3\\Accepted\\"+id+".pdf";
+                Runtime.getRuntime().exec(command);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Check file details");
+            }
+        }
+        else if(id.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Select ID from table");
+        }
+        else if(!b)//pdf exists in rejected folder
+        {
+            try {
+            
+                String command = "rundll32 url.dll, FileProtocolHandler "+
+                    "C:\\Users\\Lenovo"
+                        + "\\Documents\\Form I-3\\Rejected\\"+id+".pdf";
+                Runtime.getRuntime().exec(command);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Check file details");
+            }
+        }
+        
+        
+        
+        File newdir = new File("C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\"+id+".pdf");
+        Boolean a  = newdir.exists();
+                
+        if(!a)//pdf not exists
+        {
+            //JOptionPane.showMessageDialog(null, id+".pdf not available");
+        }
+        else if(id.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Invalid Student ID");
+        }
+        else
+        {
+            try {
             
             String command = "rundll32 url.dll, FileProtocolHandler "+
-                    "C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\"+id+".pdf";
+                    "C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\"+id+".pdf";
             Runtime.getRuntime().exec(command);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Check file details");
             }
+        }
+       
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btacceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btacceptActionPerformed
         // TODO add your handling code here:
         if (jRadioButton_accept.isSelected()) {
-             SimpleDateFormat Date_Format = new SimpleDateFormat("yyyy-MM-dd"); 
+        String status = "Accepted";
+        SimpleDateFormat Date_Format = new SimpleDateFormat("yyyy-MM-dd"); 
         String d =Date_Format.format(caldate.getDate());
         
         int r = table.getSelectedRow();
@@ -368,34 +420,44 @@ public class Form_I03P2 extends javax.swing.JFrame {
              java.sql.Statement sql = con.createStatement();
              java.sql.Statement s = con.createStatement();
             
-            sql.executeUpdate("Update formi03p2 set supervisor_name = '"+sname+"',marked_date = '"+d+"',comment = '"+comment+"' WHERE student_ID = '"+id+"'");
+            sql.executeUpdate("Update formi03p2 set supervisor_name = '"+sname+"',marked_date = '"+d+"',comment = '"+comment+"',status = '"+status+"' WHERE student_ID = '"+id+"'");
             
             //
                 SaveToPdf sp = new SaveToPdf();
-                String string1 = "Supervisor Name : "+sname+"\nMarked Date : "+d+"\nComment :\n"+comment;
-                sp.addContent_ExistingPDF_Accept(id, comment);
+                String string1 = "Supervisor's Name : "+sname+"\n\nMarked Date : "+d+"\n\nStatus : "+status+"\n\nComment : "+comment;
+                sp.addContent_ExistingPDF_Accept(id, string1);
                 
                 System.out.println("SUCEESSFULLY SAVED TO PDF");
             //
             
               JOptionPane.showMessageDialog(rootPane, "Successfully Add Comment");
+              //clear text fields
+                ButtonGroup bg = new ButtonGroup();
+                bg.add(jRadioButton_accept);
+                bg.add(jRadioButton_reject);
+                bg.clearSelection();
+                txtSuName.setText("");
+                caldate.setCalendar(null);
+                this.comment.setText("");
             }catch(Exception e)
         {
             e.printStackTrace();
         }
         }
         else if(jRadioButton_reject.isSelected()){
-             SimpleDateFormat Date_Format = new SimpleDateFormat("yyyy-MM-dd"); 
-        String d =Date_Format.format(caldate.getDate());
-        
-        int r = table.getSelectedRow();
-        String id = table.getValueAt(r, 0).toString();
-        
-        String comment = this.comment.getText();
-        String sname = txtSuName.getText();
-        
-        try {
-            java.util.Date da= caldate.getDate();
+            
+            String status = "Rejected";
+            SimpleDateFormat Date_Format = new SimpleDateFormat("yyyy-MM-dd"); 
+            String d =Date_Format.format(caldate.getDate());
+
+            int r = table.getSelectedRow();
+            String id = table.getValueAt(r, 0).toString();
+
+            String comment = this.comment.getText();
+            String sname = txtSuName.getText();
+
+            try {
+                java.util.Date da= caldate.getDate();
             
             if (da == null | comment == null | sname == null) 
                 {
@@ -411,17 +473,26 @@ public class Form_I03P2 extends javax.swing.JFrame {
              java.sql.Statement sql = con.createStatement();
              java.sql.Statement s = con.createStatement();
             
-            sql.executeUpdate("Update formi03p2 set supervisor_name = '"+sname+"',marked_date = '"+d+"',comment = '"+comment+"' WHERE student_ID = '"+id+"'");
+            sql.executeUpdate("Update formi03p2 set supervisor_name = '"+sname+"',marked_date = '"+d+"',comment = '"+comment+"',status = '"+status+"' WHERE student_ID = '"+id+"'");
             
             //
                 SaveToPdf sp = new SaveToPdf();
-                String string1 = "Supervisor Name : "+sname+"\nMarked Date : "+d+"\nComment :\n"+comment;
-                sp.addContent_ExistingPDF_Reject(id, comment);
+                String string1 = "Supervisor's Name : "+sname+"\n\nMarked Date : "+d+"\n\nStatus : "+status+"\n\nComment : "+comment;
+                sp.addContent_ExistingPDF_Reject(id, string1);
                 
                 System.out.println("SUCEESSFULLY SAVED TO PDF");
             //
             
               JOptionPane.showMessageDialog(rootPane, "Successfully Add Comment");
+              
+              //clear text fields
+                ButtonGroup bg = new ButtonGroup();
+                bg.add(jRadioButton_accept);
+                bg.add(jRadioButton_reject);
+                bg.clearSelection();
+                txtSuName.setText("");
+                caldate.setCalendar(null);
+                this.comment.setText("");
             }catch(Exception e)
         {
             e.printStackTrace();
@@ -430,12 +501,12 @@ public class Form_I03P2 extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btacceptActionPerformed
 
-    private void btrejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btrejectActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-//        Reject_mail rm = new Reject_mail();
-//        rm.setVisible(true);
-       // this.dispose();
-    }//GEN-LAST:event_btrejectActionPerformed
+        mainForm l1=new mainForm();
+        l1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -474,13 +545,10 @@ public class Form_I03P2 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btaccept;
-    private javax.swing.JButton btedit;
-    private javax.swing.JButton btreject;
-    private javax.swing.JButton btreport;
     private com.toedter.calendar.JDateChooser caldate;
     private javax.swing.JTextArea comment;
-    private javax.swing.JTextArea description;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -503,7 +571,7 @@ public class Form_I03P2 extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton_reject;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable table;
     private javax.swing.JTextField txtFrom;
     private javax.swing.JTextField txtSuName;

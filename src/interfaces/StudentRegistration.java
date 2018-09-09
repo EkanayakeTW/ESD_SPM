@@ -16,6 +16,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *

@@ -153,7 +153,7 @@ public class Login extends javax.swing.JFrame {
                 }
             else{
                 
-                    String sql="select * from login where  username=? and password=?";
+                    String sql="select * from login where  email=? and password=?";
        
                     try{
                         pst=con.prepareStatement(sql);
@@ -165,9 +165,9 @@ public class Login extends javax.swing.JFrame {
                         if(rs.next())
                         {
                             JOptionPane.showMessageDialog(null, "Successfully login as employer");
-                            StudentRegistration SR = new StudentRegistration();
-                            SR.setVisible(true);
-                            this.dispose();       
+                            mainForm m1 = new mainForm();
+                        m1.setVisible(true);
+                        this.dispose();      
                         }
                         else
                             JOptionPane.showMessageDialog(null, "Invalid Login!");
