@@ -346,7 +346,12 @@ public class Form_I03P2 extends javax.swing.JFrame {
         File dir = new File("C:\\Users\\Dell\\Documents\\Form I-3\\Accepted\\"+id+".pdf");
         Boolean b  = dir.exists();
         
-              
+        File dir1 = new File("C:\\Users\\Dell\\Documents\\Form I-3\\Rejected\\"+id+".pdf");
+        Boolean c  = dir1.exists();
+        
+        File newdir = new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\"+id+".pdf");
+        Boolean a  = newdir.exists();    
+        
         if(b)//pdf exists in accepted folder
         {
             try {
@@ -358,11 +363,7 @@ public class Form_I03P2 extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Check file details");
             }
         }
-        else if(id.equals(""))
-        {
-            JOptionPane.showMessageDialog(null, "Select ID from table");
-        }
-        else if(!b)//pdf exists in rejected folder
+        else if(c)//pdf exists in rejected folder
         {
             try {
             
@@ -374,21 +375,7 @@ public class Form_I03P2 extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Check file details");
             }
         }
-        
-        
-        
-        File newdir = new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\"+id+".pdf");
-        Boolean a  = newdir.exists();
-                
-        if(!a)//pdf not exists
-        {
-            //JOptionPane.showMessageDialog(null, id+".pdf not available");
-        }
-        else if(id.equals(""))
-        {
-            JOptionPane.showMessageDialog(null, "Invalid Student ID");
-        }
-        else
+        else if(a)//pdf exists in IT No folder
         {
             try {
             
@@ -398,6 +385,11 @@ public class Form_I03P2 extends javax.swing.JFrame {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Check file details");
             }
+        }
+        
+        else if(id.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Select ID from table");
         }
        
         
