@@ -270,9 +270,9 @@ public class Email_To_Saman_Sir extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        /* Student_View v = new Student_View();
+         Student_View v = new Student_View();
         v.setVisible(true);
-        this.dispose();*/
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

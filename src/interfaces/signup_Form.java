@@ -98,7 +98,7 @@ public class signup_Form extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 360, -1, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/S_images/signup.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Viva2018SPM\\ESD_SPM\\src\\S_images\\signup.png")); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, 100, 100));
 
         pack();

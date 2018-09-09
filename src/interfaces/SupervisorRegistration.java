@@ -148,6 +148,8 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         fake = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 51));
@@ -290,6 +292,17 @@ public class SupervisorRegistration extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, -1, 650));
 
+        jLabel15.setText("<- LogOut");
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel15MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 50, -1, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/S_images/user.png"))); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 0, 50, 50));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -426,6 +439,12 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_maleActionPerformed
 
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        Login l1=new Login();
+        l1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel15MouseClicked
+
     
 
         
@@ -482,8 +501,10 @@ public class SupervisorRegistration extends javax.swing.JFrame {
     private javax.swing.JRadioButton female;
     private javax.swing.JLabel gender;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
