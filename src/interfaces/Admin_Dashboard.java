@@ -13,15 +13,10 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import jdk.nashorn.internal.objects.annotations.Where;
 import net.proteanit.sql.DbUtils;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartFrame;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.jdbc.JDBCPieDataset;
 
 /**
  *
