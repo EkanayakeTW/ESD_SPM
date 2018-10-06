@@ -69,8 +69,8 @@ public class Email_Form extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        pwTxt = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        pwTxt = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,7 +88,7 @@ public class Email_Form extends javax.swing.JFrame {
         jLabel6.setText("Attachment :");
 
         toTxt.setEditable(false);
-        toTxt.setText("saman.g@sliit.lk");
+        toTxt.setText("ravindubandarasaluwadana@gmail.com");
         toTxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 toTxtMouseReleased(evt);
@@ -133,16 +133,14 @@ public class Email_Form extends javax.swing.JFrame {
 
         jLabel7.setText("Password :");
 
+        pwTxt.setText("jPasswordField1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(280, 280, 280)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -155,15 +153,19 @@ public class Email_Form extends javax.swing.JFrame {
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel7)))
                         .addGap(61, 61, 61)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(pwTxt)
-                            .addComponent(fromTxt)
-                            .addComponent(subjectTxt)
-                            .addComponent(attachTxt)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(pwTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fromTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(subjectTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(attachTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
                             .addComponent(toTxt))
                         .addGap(35, 35, 35)
                         .addComponent(jButton1))
+                    .addComponent(jButton3)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(280, 280, 280)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(308, 308, 308)
                         .addComponent(jButton2)))
@@ -184,8 +186,8 @@ public class Email_Form extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pwTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(pwTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(subjectTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,7 +238,7 @@ public class Email_Form extends javax.swing.JFrame {
         String from = fromTxt.getText();
         String subject = subjectTxt.getText();
         String description = descriptionTxt.getText();
-        String password = this.pwTxt.getText();
+        String password = this.pwTxt.getText().toString();
         
         Properties props = new Properties();
         props.put("mail.smtp.host","smtp.gmail.com");
@@ -361,7 +363,7 @@ public class Email_Form extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField pwTxt;
+    private javax.swing.JPasswordField pwTxt;
     private javax.swing.JTextField subjectTxt;
     private javax.swing.JTextField toTxt;
     // End of variables declaration//GEN-END:variables
