@@ -221,7 +221,7 @@ public class VivaSchedule extends javax.swing.JFrame {
         String time1= time.getSelectedItem().toString();
         String venue1=venue.getSelectedItem().toString();
         
-        String q= "Insert into vivaschedule(student,lecture_name,date,time,venue) values ('"+student_id+"','"+lecturer_name+"','"+date1+"','"+time1+"','"+venue1+"')";
+          String q= "Insert into vivaschedule(student,lecture_name,date,time,venue) values ('"+student_id+"','"+lecturer_name+"','"+date1+"','"+time1+"','"+venue1+"')";
          
               pst=(PreparedStatement) conn.prepareStatement(q);
               pst.execute();
@@ -231,7 +231,7 @@ public class VivaSchedule extends javax.swing.JFrame {
             }catch(Exception e){
                 e.getMessage();
             }
-        stu_id.setText(" ");
+        stu_id.setText("");
        
          tableload();       
     }//GEN-LAST:event_jButton1ActionPerformed
