@@ -196,6 +196,11 @@ public class VivaSchedule extends javax.swing.JFrame {
         jInternalFrame1.getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 20, -1, -1));
 
         jButton5.setText("Delete");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jInternalFrame1.getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 530, 190, -1));
 
         jButton6.setText("Save To PDF");
@@ -225,6 +230,10 @@ public class VivaSchedule extends javax.swing.JFrame {
               pst=(PreparedStatement) conn.prepareStatement(q);
               pst.execute();
               
+              String qs="Delete from form5filled where student='"+student_id+"'";
+            pst1=(PreparedStatement) conn.prepareStatement(qs);
+              pst1.execute();
+              
               JOptionPane.showMessageDialog(null, "successfully added details");
                 
             }catch(Exception e){
@@ -245,6 +254,23 @@ public class VivaSchedule extends javax.swing.JFrame {
         String student_id_=jTable1.getValueAt(r, 0).toString();
         stu_id.setText(student_id_);
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        try{
+            String student_id=stu_id.getText();
+            String q="Delete from vivaschedule where student='"+student_id+"'";
+            pst=(PreparedStatement) conn.prepareStatement(q);
+              pst.execute();
+              
+              JOptionPane.showMessageDialog(null, "successfully added details");
+            
+        }catch(Exception e){
+            e.getMessage();
+        }
+         stu_id.setText("  ");
+         tableload();  
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
