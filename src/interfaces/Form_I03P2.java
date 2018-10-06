@@ -343,13 +343,13 @@ public class Form_I03P2 extends javax.swing.JFrame {
         String id = table.getValueAt(r, 0).toString();
         //
         
-        File dir = new File("C:\\Users\\Dell\\Documents\\Form I-3\\Accepted\\"+id+".pdf");
+        File dir = new File("C:\\Users\\Lenovo\\Documents\\Form I-3\\Accepted\\"+id+".pdf");
         Boolean b  = dir.exists();
         
-        File dir1 = new File("C:\\Users\\Dell\\Documents\\Form I-3\\Rejected\\"+id+".pdf");
+        File dir1 = new File("C:\\Users\\Lenovo\\Documents\\Form I-3\\Rejected\\"+id+".pdf");
         Boolean c  = dir1.exists();
         
-        File newdir = new File("C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\"+id+".pdf");
+        File newdir = new File("C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\"+id+".pdf");
         Boolean a  = newdir.exists();    
         
         if(b)//pdf exists in accepted folder
@@ -357,7 +357,7 @@ public class Form_I03P2 extends javax.swing.JFrame {
             try {
             
                 String command = "rundll32 url.dll, FileProtocolHandler "+
-                    "C:\\Users\\Dell\\Documents\\Form I-3\\Accepted\\"+id+".pdf";
+                    "C:\\Users\\Lenovo\\Documents\\Form I-3\\Accepted\\"+id+".pdf";
                 Runtime.getRuntime().exec(command);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Check file details");
@@ -368,7 +368,7 @@ public class Form_I03P2 extends javax.swing.JFrame {
             try {
             
                 String command = "rundll32 url.dll, FileProtocolHandler "+
-                    "C:\\Users\\Dell"
+                    "C:\\Users\\Lenovo"
                         + "\\Documents\\Form I-3\\Rejected\\"+id+".pdf";
                 Runtime.getRuntime().exec(command);
             } catch (Exception e) {
@@ -380,7 +380,7 @@ public class Form_I03P2 extends javax.swing.JFrame {
             try {
             
             String command = "rundll32 url.dll, FileProtocolHandler "+
-                    "C:\\Users\\Dell\\Documents\\Form I-3\\"+id+"\\"+id+".pdf";
+                    "C:\\Users\\Lenovo\\Documents\\Form I-3\\"+id+"\\"+id+".pdf";
             Runtime.getRuntime().exec(command);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Check file details");
@@ -508,7 +508,7 @@ public class Form_I03P2 extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        mainForm l1=new mainForm();
+        StaffMain l1=new StaffMain();
         l1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
