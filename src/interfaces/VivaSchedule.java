@@ -6,6 +6,11 @@
 package interfaces;
 
 import MainFiles.Dbconfig;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -169,6 +174,11 @@ public class VivaSchedule extends javax.swing.JFrame {
         jInternalFrame1.getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 530, 180, -1));
 
         jButton2.setText("Update");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jInternalFrame1.getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 530, 170, -1));
 
         jButton3.setText("View PDF");
@@ -204,6 +214,11 @@ public class VivaSchedule extends javax.swing.JFrame {
         jInternalFrame1.getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 530, 190, -1));
 
         jButton6.setText("Save To PDF");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         jInternalFrame1.getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 530, 190, -1));
 
         jButton7.setText("Save To PDF");
@@ -263,7 +278,7 @@ public class VivaSchedule extends javax.swing.JFrame {
             pst=(PreparedStatement) conn.prepareStatement(q);
               pst.execute();
               
-              JOptionPane.showMessageDialog(null, "successfully added details");
+              JOptionPane.showMessageDialog(null, "successfully delete details");
             
         }catch(Exception e){
             e.getMessage();
@@ -271,6 +286,74 @@ public class VivaSchedule extends javax.swing.JFrame {
          stu_id.setText("  ");
          tableload();  
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        // int r= jTable2. ;
+        //  String id=jTable2.getValueAt(r, 0).toString();
+          // String description = jTextArea1.getText();
+           
+//            Document document = new Document(PageSize.A4);
+//            document.addAuthor("Ind.");
+//            document.addTitle("Viva Schhedule");
+//            System.out.println("doc created");
+//            
+//            try {
+//            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\Dell\\Documents\\Form1\\schedule.pdf"));
+//            document.open();
+//            PdfPTable tb1= PdfPTable(3);
+//            tb1.addCell("student");
+//            tb1.addCell("Lecture");
+//            tb1.addCell("date");
+//            tb1.addCell("time");
+//            tb1.addCell("venue");
+//            
+//            for(int i=0;i<jTable2.getRowCount();i++){
+//                String id=jTable2.getValueAt(i, 0).toString();
+//                String lecture=jTable2.getValueAt(i, 1).toString();
+//                String date=jTable2.getValueAt(i, 2).toString();
+//                String time=jTable2.getValueAt(i, 3).toString();
+//                String venue=jTable2.getValueAt(i, 4).toString();
+//                
+//                tb1.addCell(id);
+//                tb1.addCell(lecture);
+//                tb1.addCell(date);
+//                tb1.addCell(time);
+//                tb1.addCell(venue);
+//                
+//                document.add(tb1);
+//            }
+//            
+//          //  Paragraph para = new Paragraph(description);
+//          //  document.add(para);
+//            document.close();
+//        } catch (Exception e) {
+//        }
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+         try{
+            String student_id=stu_id.getText();
+        String lecturer_name=lec_name.getSelectedItem().toString();
+        SimpleDateFormat Date_Format = new SimpleDateFormat("yyyy-MM-dd"); 
+        String date1 =Date_Format.format(date.getDate());
+        String time1= time.getSelectedItem().toString();
+        String venue1=venue.getSelectedItem().toString();
+        
+            String q="update table vivaschedule set(lecture_name='"+lecturer_name+"',date='"+date1+"',time='"+time1+"',venue='"+venue1+"')  where student='"+student_id+"'";
+            pst=(PreparedStatement) conn.prepareStatement(q);
+              pst.execute();
+              
+              JOptionPane.showMessageDialog(null, "successfully delete details");
+            
+        }catch(Exception e){
+            e.getMessage();
+        }
+         stu_id.setText("  ");
+         tableload();  
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
