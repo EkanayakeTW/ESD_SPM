@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import MainFiles.Dbconfig;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,6 +31,8 @@ public class SupervisorRegistration extends javax.swing.JFrame {
      */
     public SupervisorRegistration() {
         initComponents();
+         con=Dbconfig.connect();
+         tableload();
         
     }
         public void AddRegistration()
@@ -37,27 +40,28 @@ public class SupervisorRegistration extends javax.swing.JFrame {
     {
         
         
-        String id = spId.getText();
-        String name =svname.getText();
-        String supervisor_gender=buttonGroup1.getSelection().getActionCommand();
-        String contact =number.getText();
-        String email =email_1.getText();
-        String Password1 =pw1.getPassword().toString();
-        String Password2=pw3.getPassword().toString();
-        String Dept =dept.getText();
+        String id = suid.getText();
+        String name =suname.getText();
+        String supervisor_gender=sugender.getText();
+        String contact =sucontact.getText();
+        String email =suemail.getText();
+        String Password1 =supw1.getText();
+        String Password2=supw2.getText();
+        String Dept =sudept.getText();
         
         
         if((id.isEmpty())||(name.isEmpty())||(contact.isEmpty())
                 ||(email.isEmpty())
                 ||(Password1.isEmpty())||(Password2.isEmpty())
                 ||(Dept.isEmpty())){
-            spId.setBackground(Color.GREEN);
-            svname.setBackground(Color.GREEN);
-            number.setBackground(Color.GREEN);
-            email_1.setBackground(Color.GREEN);
-            dept.setBackground(Color.GREEN);
-            pw1.setBackground(Color.GREEN);
-            pw3.setBackground(Color.GREEN);
+            suid.setBackground(Color.GREEN);
+            suname.setBackground(Color.GREEN);
+            sugender.setBackground(Color.GREEN);
+            sucontact.setBackground(Color.GREEN);
+            suemail.setBackground(Color.GREEN);
+            sudept.setBackground(Color.GREEN);
+            supw1.setBackground(Color.GREEN);
+            supw2.setBackground(Color.GREEN);
            
             JOptionPane.showMessageDialog(null, "WARNING FIELDS ARE EMPTY");
             
@@ -75,7 +79,7 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         } else
         
         try{
-                 String x="Insert into supervisorregistration(supervisor_id,supervisor_name,"
+                 String x="Insert into supervisorsorregistration(supervisor_id,supervisor_name,"
                + "gender,contact_number,email,password1,"
                + "password2,Dept)"
                + "values('"+id+"','"+name+"','"+supervisor_gender+"','"+contact+"','"+email+"'"
@@ -85,9 +89,10 @@ public class SupervisorRegistration extends javax.swing.JFrame {
               pst=(PreparedStatement) con.prepareStatement(x);
               System.out.println("3d");
               pst.execute();
+              tableload();
                  
                 JOptionPane.showMessageDialog(null, "successfully added to the"
-                        + " SupervisorRegistration");
+                        + " supervisorsorregistration");
                 
             }catch(Exception e){
                 e.getMessage();
@@ -95,18 +100,17 @@ public class SupervisorRegistration extends javax.swing.JFrame {
           
         
     }
-    public void TableLoad() throws SQLException{
-      
+     public void tableload()
+    {
         try {
-            String sql="select * from supervisorregistration";
-            
-            pst=(PreparedStatement) con.prepareStatement(sql);
+            String sql="select * from supervisorsorregistration";
+            pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
-            //.setModel(DbUtils.resultSetToTableModel(rs));
-        } catch (SQLException ex) {
-            Logger.getLogger(StudentRegistration.class.getName()).log(Level.SEVERE, null, ex);
+            table.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            
+        } catch (Exception e) {
         }
-       
     }
 
     /**
@@ -127,19 +131,18 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         email = new javax.swing.JLabel();
         pw = new javax.swing.JLabel();
         repw = new javax.swing.JLabel();
-        male = new javax.swing.JRadioButton();
-        female = new javax.swing.JRadioButton();
         gender = new javax.swing.JLabel();
         campus = new javax.swing.JLabel();
-        spId = new javax.swing.JTextField();
-        svname = new javax.swing.JTextField();
-        number = new javax.swing.JTextField();
-        dept = new javax.swing.JTextField();
-        pw1 = new javax.swing.JPasswordField();
+        suid = new javax.swing.JTextField();
+        sugender = new javax.swing.JTextField();
+        sucontact = new javax.swing.JTextField();
+        sudept = new javax.swing.JTextField();
+        supw1 = new javax.swing.JPasswordField();
         reset = new javax.swing.JButton();
         add1 = new javax.swing.JButton();
-        pw3 = new javax.swing.JPasswordField();
-        email_1 = new javax.swing.JTextField();
+        supw2 = new javax.swing.JPasswordField();
+        suemail = new javax.swing.JTextField();
+        suname = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         view = new javax.swing.JButton();
         delete = new javax.swing.JButton();
@@ -167,10 +170,10 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 240, 30));
 
         jLabel3.setText("Supervisor Id");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 80, 20));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 100, 20));
 
         jLabel5.setText("Supervisor Name");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 90, 20));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 130, 20));
 
         contact.setText("Contact Number");
         jPanel1.add(contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 100, 20));
@@ -184,30 +187,16 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         repw.setText("Re-enter Password");
         jPanel1.add(repw, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 100, 20));
 
-        buttonGroup1.add(male);
-        male.setSelected(true);
-        male.setText("Male");
-        male.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                maleActionPerformed(evt);
-            }
-        });
-        jPanel1.add(male, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, -1, -1));
-
-        buttonGroup1.add(female);
-        female.setText("Female");
-        jPanel1.add(female, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
-
         gender.setText("Gender");
         jPanel1.add(gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 90, 20));
 
         campus.setText("Department");
         jPanel1.add(campus, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, 90, 20));
-        jPanel1.add(spId, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 200, 30));
-        jPanel1.add(svname, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 200, 30));
-        jPanel1.add(number, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 210, 30));
-        jPanel1.add(dept, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 510, 210, 30));
-        jPanel1.add(pw1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 210, 30));
+        jPanel1.add(suid, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 200, 30));
+        jPanel1.add(sugender, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 200, 30));
+        jPanel1.add(sucontact, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 210, 30));
+        jPanel1.add(sudept, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 510, 210, 30));
+        jPanel1.add(supw1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 210, 30));
 
         reset.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         reset.setText("Reset");
@@ -226,8 +215,9 @@ public class SupervisorRegistration extends javax.swing.JFrame {
             }
         });
         jPanel1.add(add1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 600, -1, -1));
-        jPanel1.add(pw3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, 210, 30));
-        jPanel1.add(email_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 210, 30));
+        jPanel1.add(supw2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, 210, 30));
+        jPanel1.add(suemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 210, 30));
+        jPanel1.add(suname, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 200, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 560, 650));
 
@@ -309,13 +299,14 @@ public class SupervisorRegistration extends javax.swing.JFrame {
     private void Demo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Demo1ActionPerformed
         // TODO add your handling code here:
         
-        spId.setText("SPR15023156");
-        svname.setText("Bihandu Sanchith");
-        number.setText("0772359578");
-        email_1.setText("B@gmail.com");
-        pw1.setText("but123");
-        pw3.setText("but123");
-        dept.setText("SE");
+        suid.setText("SPR15023156");
+        suname.setText("Bihandu Sanchith");
+        sugender.setText("Male");
+        sucontact.setText("0772359578");
+        suemail.setText("B@gmail.com");
+        supw1.setText("but123");
+        supw2.setText("but123");
+        sudept.setText("SE");
         
         
     }//GEN-LAST:event_Demo1ActionPerformed
@@ -323,23 +314,77 @@ public class SupervisorRegistration extends javax.swing.JFrame {
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
         // TODO add your handling code here:
         
-        spId.setText("");
-        svname.setText("");
-        number.setText("");
-        dept.setText("");
-        pw1.setText("");
-        pw3.setText("");
-        dept.setText("");
+        suid.setText("");
+        suname.setText("");
+        sugender.setText("");
+        sucontact.setText("");
+        suemail.setText("");
+        sudept.setText("");
+        supw1.setText("");
+        supw2.setText("");
+        sudept.setText("");
         
     }//GEN-LAST:event_resetActionPerformed
 
     private void add1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add1ActionPerformed
         // TODO add your handling code here:
-        try{
-        AddRegistration();
-        }catch(Exception e){
-            e.getMessage();
+        String id = suid.getText();
+        String name =suname.getText();
+        String supervisor_gender=sugender.getText();
+        String contact =sucontact.getText();
+        String email =suemail.getText();
+        String Password1 =supw1.getText();
+        String Password2=supw2.getText();
+        String Dept =sudept.getText();
+        
+        
+        if((id.isEmpty())||(name.isEmpty())||(contact.isEmpty())
+                ||(email.isEmpty())
+                ||(Password1.isEmpty())||(Password2.isEmpty())
+                ||(Dept.isEmpty())){
+            suid.setBackground(Color.GREEN);
+            suname.setBackground(Color.GREEN);
+            sugender.setBackground(Color.GREEN);
+            sucontact.setBackground(Color.GREEN);
+            suemail.setBackground(Color.GREEN);
+            sudept.setBackground(Color.GREEN);
+            supw1.setBackground(Color.GREEN);
+            supw2.setBackground(Color.GREEN);
+           
+            JOptionPane.showMessageDialog(null, "WARNING FIELDS ARE EMPTY");
+            
         }
+        else if(!id.startsWith("SPR")){
+            JOptionPane.showMessageDialog(null, "Invalid SPR number");
+        }
+        else if((contact.length()!=10)){
+            JOptionPane.showMessageDialog(null, "Invalid phone number");
+        }
+
+        else if(email.indexOf('@')==0 || email.indexOf('.')==0 ||email.indexOf('@')>email.indexOf('.')){
+            JOptionPane.showMessageDialog(null, "Invalid email address");
+        
+        } else
+        
+        try{
+                 String x="Insert into supervisorsorregistration(supervisor_id,supervisor_name,"
+               + "gender,contact_number,email,password1,"
+               + "password2,Dept)"
+               + "values('"+id+"','"+name+"','"+supervisor_gender+"','"+contact+"','"+email+"'"
+               + ",'"+Password1+"','"+Password2+"',"
+               + "'"+Dept+"')";
+                System.out.println("2nd");
+              pst=(PreparedStatement) con.prepareStatement(x);
+              System.out.println("3d");
+              pst.execute();
+              tableload();
+                 
+                JOptionPane.showMessageDialog(null, "successfully added to the"
+                        + " SupervisorRegistration");
+                
+            }catch(Exception e){
+                e.getMessage();
+            }
         
     }//GEN-LAST:event_add1ActionPerformed
 
@@ -356,15 +401,17 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         String email = table.getValueAt(row,4).toString();
         String password1 = table.getValueAt(row,5).toString();
         String password2 = table.getValueAt(row,6).toString();
+        String department = table.getValueAt(row,7).toString();
        
 
-        spId.setText(supervisor_ID);
-        svname.setText(supervisor_name);
-        male.setText(supervisor_gender);
-        number.setText(contact);
-        dept.setText(email);
-        pw1.setText(password1);
-        pw3.setText(password2);
+        suid.setText(supervisor_ID);
+        suname.setText(supervisor_name);
+        sugender.setText(supervisor_gender);
+        sucontact.setText(contact);
+        suemail.setText(email);
+        supw1.setText(password1);
+        supw2.setText(password2);
+        sudept.setText(department);
         }catch(Exception e){
             e.getMessage();
         }
@@ -377,34 +424,26 @@ public class SupervisorRegistration extends javax.swing.JFrame {
          int x = JOptionPane.showConfirmDialog(null, "Do you want to update this record");
         
         if (x==0){
-            String id = spId.getText();
-            String name = svname.getText();
-           
-            if(male.isSelected())
-            {
-                 fake.setText("Male");
-                 String male = fake.getText();
-            }
-            else{
-                fake.setText("Female");
-                String female= fake.getText();
-            }
-            String contact = number.getText();
-            String mail = dept.getText();
-            String pw = pw1.getText();
-            String pw1 =pw3.getText();
+            String id = suid.getText();
+            String name = suname.getText();
+            String gender=sugender.getText();
+            String contact = sucontact.getText();
+            String mail = suemail.getText();
+            String pw = supw1.getText();
+            String pw1 =supw2.getText();
+            String dept=sudept.getText();
             
            
             
             try{
-                String sql = "update supervisorregistration set supervisor_name = '"+name+"',"
-                        + "gender = '"+fake.getText()+"',"
+                String sql = "Update supervisorsorregistration set supervisor_name = '"+name+"',"
+                        + "gender = '"+gender+"',"
                         + "contact_number = '"+contact+"',email = '"+mail+"',"
-                        + "password1 = '"+pw+"',student_password2 = '"+pw1+""
+                        + "password1 = '"+pw+"',password2 = '"+pw1+"',Dept='"+dept+"',"
                         + "where supervisor_id ='"+id+"'";
                 pst =(PreparedStatement)con.prepareStatement(sql);
                 pst.execute();
-                TableLoad();
+                tableload();
             }catch(Exception e){
                e.getMessage();
             }
@@ -419,14 +458,14 @@ public class SupervisorRegistration extends javax.swing.JFrame {
         int x = JOptionPane.showConfirmDialog(null, "Do you want to delete this record");
         
         if (x==0){
-            String id = spId.getText();
+            String id = suid.getText();
             
             
             try{
-                String sql = "delete from supervisorregistration where supervisor_id ='"+id+"'";
+                String sql = "delete from supervisorsorregistration where supervisor_id ='"+id+"'";
                 pst =(PreparedStatement)con.prepareStatement(sql);
                 pst.execute();
-                TableLoad();
+                tableload();
             }catch(Exception e){
                e.getMessage();
             }
@@ -434,10 +473,6 @@ public class SupervisorRegistration extends javax.swing.JFrame {
           
         }
     }//GEN-LAST:event_deleteActionPerformed
-
-    private void maleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_maleActionPerformed
 
     private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
         Login l1=new Login();
@@ -493,12 +528,9 @@ public class SupervisorRegistration extends javax.swing.JFrame {
     private javax.swing.JLabel campus;
     private javax.swing.JLabel contact;
     private javax.swing.JButton delete;
-    private javax.swing.JTextField dept;
     private javax.swing.JButton edit;
     private javax.swing.JLabel email;
-    private javax.swing.JTextField email_1;
     private javax.swing.JLabel fake;
-    private javax.swing.JRadioButton female;
     private javax.swing.JLabel gender;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
@@ -508,15 +540,17 @@ public class SupervisorRegistration extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JRadioButton male;
-    private javax.swing.JTextField number;
     private javax.swing.JLabel pw;
-    private javax.swing.JPasswordField pw1;
-    private javax.swing.JPasswordField pw3;
     private javax.swing.JLabel repw;
     private javax.swing.JButton reset;
-    private javax.swing.JTextField spId;
-    private javax.swing.JTextField svname;
+    private javax.swing.JTextField sucontact;
+    private javax.swing.JTextField sudept;
+    private javax.swing.JTextField suemail;
+    private javax.swing.JTextField sugender;
+    private javax.swing.JTextField suid;
+    private javax.swing.JTextField suname;
+    private javax.swing.JPasswordField supw1;
+    private javax.swing.JPasswordField supw2;
     private javax.swing.JTable table;
     private javax.swing.JButton view;
     // End of variables declaration//GEN-END:variables

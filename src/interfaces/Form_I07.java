@@ -632,6 +632,9 @@ public class Form_I07 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void evaluation_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_evaluation_tableMouseClicked
+       
+        //mouce clicked event
+        
         int r= evaluation_table.getSelectedRow();
          String student_id_=evaluation_table.getValueAt(r, 0).toString();
         String student_name_=evaluation_table.getValueAt(r, 1).toString();
@@ -649,7 +652,7 @@ public class Form_I07 extends javax.swing.JFrame {
         String examinar_name=evaluation_table.getValueAt(r, 13).toString();
         
    
-        
+        //set row values to text fields
                  sid.setText(student_id_);
                  sname.setText(student_name_);
                  sphone.setText(student_contact_);
