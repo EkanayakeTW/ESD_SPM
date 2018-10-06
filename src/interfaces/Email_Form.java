@@ -87,6 +87,8 @@ public class Email_Form extends javax.swing.JFrame {
 
         jLabel6.setText("Attachment :");
 
+        toTxt.setEditable(false);
+        toTxt.setText("saman.g@sliit.lk");
         toTxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 toTxtMouseReleased(evt);
@@ -98,8 +100,6 @@ public class Email_Form extends javax.swing.JFrame {
             }
         });
 
-        fromTxt.setEditable(false);
-        fromTxt.setText("ravindubandarasaluwadana@gmail.com");
         fromTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fromTxtActionPerformed(evt);
@@ -262,11 +262,14 @@ public class Email_Form extends javax.swing.JFrame {
             messageBodyPart.setText(description);
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(messageBodyPart);
-            //messageBodyPart = new MimeBodyPart();
-            /*javax.activation.DataSource source = new FileDataSource(attachment_path);
+            
+            //Add attachment to email
+            
+            messageBodyPart = new MimeBodyPart();
+            javax.activation.DataSource source = new FileDataSource(attachment_path);
             messageBodyPart.setDataHandler(new DataHandler(source));
-            messageBodyPart.setFileName(attachTxt.getText());*/
-            //multipart.addBodyPart(messageBodyPart);
+            messageBodyPart.setFileName(attachTxt.getText());
+            multipart.addBodyPart(messageBodyPart);
             message.setContent(multipart);
             
             Transport.send(message);
@@ -282,11 +285,17 @@ public class Email_Form extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        JFileChooser chooser = new JFileChooser();
+        /*JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         File f = chooser.getSelectedFile();
         String filename = f.getAbsolutePath();
-        attachTxt.setText(filename);
+        attachTxt.setText(filename);*/
+        
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        attachment_path = f.getAbsolutePath();
+        attachTxt.setText(attachment_path);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -356,4 +365,5 @@ public class Email_Form extends javax.swing.JFrame {
     private javax.swing.JTextField subjectTxt;
     private javax.swing.JTextField toTxt;
     // End of variables declaration//GEN-END:variables
+    String attachment_path;
 }
