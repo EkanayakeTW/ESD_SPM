@@ -25,7 +25,7 @@ import org.jfree.data.general.DefaultPieDataset;
 public class Admin_Dashboard extends javax.swing.JFrame{
 
     /**
-     * Creates new form Admin_Dashboard
+     * Creates new form named Admin_Dashboard
      */
     
     Connection con=null;
