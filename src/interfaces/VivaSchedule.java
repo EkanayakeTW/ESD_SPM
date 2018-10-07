@@ -146,6 +146,11 @@ public class VivaSchedule extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         jInternalFrame1.getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 1170, 170));
@@ -232,7 +237,7 @@ public class VivaSchedule extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try{
+       try{
          String student_id=stu_id.getText();
         String lecturer_name=lec_name.getSelectedItem().toString();
         SimpleDateFormat Date_Format = new SimpleDateFormat("yyyy-MM-dd"); 
@@ -256,7 +261,7 @@ public class VivaSchedule extends javax.swing.JFrame {
             }
         stu_id.setText("  ");
        
-         tableload();       
+         tableload(); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -346,7 +351,7 @@ public class VivaSchedule extends javax.swing.JFrame {
             pst=(PreparedStatement) conn.prepareStatement(q);
               pst.execute();
               
-              JOptionPane.showMessageDialog(null, "successfully delete details");
+              JOptionPane.showMessageDialog(null, "successfully updated details");
             
         }catch(Exception e){
             e.getMessage();
@@ -354,6 +359,13 @@ public class VivaSchedule extends javax.swing.JFrame {
          stu_id.setText("  ");
          tableload();  
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        // TODO add your handling code here:
+         int r= jTable2.getSelectedRow();
+        String student_id_=jTable2.getValueAt(r, 0).toString();
+        stu_id.setText(student_id_);
+    }//GEN-LAST:event_jTable2MouseClicked
 
     /**
      * @param args the command line arguments
