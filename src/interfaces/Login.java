@@ -165,7 +165,7 @@ public class Login extends javax.swing.JFrame {
                         if(rs.next())
                         {
                             JOptionPane.showMessageDialog(null, "Successfully login as employer");
-                            mainForm m1 = new mainForm();
+                            StaffMain m1 = new StaffMain();
                         m1.setVisible(true);
                         this.dispose();      
                         }

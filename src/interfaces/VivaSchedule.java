@@ -100,7 +100,7 @@ public class VivaSchedule extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        date = new org.jdesktop.swingx.JXDatePicker();
+        date = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -228,7 +228,7 @@ public class VivaSchedule extends javax.swing.JFrame {
 
         jButton7.setText("Save To PDF");
         jInternalFrame1.getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 530, 190, -1));
-        jInternalFrame1.getContentPane().add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, 840, -1));
+        jInternalFrame1.getContentPane().add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, 210, -1));
 
         getContentPane().add(jInternalFrame1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -1, 1400, 730));
 
@@ -403,7 +403,7 @@ public class VivaSchedule extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.jdesktop.swingx.JXDatePicker date;
+    private com.toedter.calendar.JDateChooser date;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
